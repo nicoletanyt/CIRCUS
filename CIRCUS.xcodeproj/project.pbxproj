@@ -15,6 +15,7 @@
 		A27C0C8D289250040075532A /* RecyclingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8C289250040075532A /* RecyclingView.swift */; };
 		A27C0C8F289250150075532A /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8E289250150075532A /* ExchangeView.swift */; };
 		A27C0C912892502F0075532A /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C902892502F0075532A /* ClosetView.swift */; };
+		A27C0C9328925B120075532A /* Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C9228925B120075532A /* Clothes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A27C0C8C289250040075532A /* RecyclingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecyclingView.swift; sourceTree = "<group>"; };
 		A27C0C8E289250150075532A /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
 		A27C0C902892502F0075532A /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
+		A27C0C9228925B120075532A /* Clothes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				A27C0C8C289250040075532A /* RecyclingView.swift */,
 				A27C0C8E289250150075532A /* ExchangeView.swift */,
 				A27C0C902892502F0075532A /* ClosetView.swift */,
+				A27C0C9228925B120075532A /* Clothes.swift */,
 				A27C0C8A28924F890075532A /* ProfileView.swift */,
 				A27C0C8028924E240075532A /* Assets.xcassets */,
 				A27C0C8228924E240075532A /* Preview Content */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27C0C7F28924E220075532A /* ContentView.swift in Sources */,
+				A27C0C9328925B120075532A /* Clothes.swift in Sources */,
 				A27C0C8D289250040075532A /* RecyclingView.swift in Sources */,
 				A27C0C912892502F0075532A /* ClosetView.swift in Sources */,
 				A27C0C8B28924F890075532A /* ProfileView.swift in Sources */,
