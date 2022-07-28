@@ -11,6 +11,10 @@
 		A27C0C7F28924E220075532A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C7E28924E220075532A /* ContentView.swift */; };
 		A27C0C8128924E240075532A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27C0C8028924E240075532A /* Assets.xcassets */; };
 		A27C0C8428924E240075532A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27C0C8328924E240075532A /* Preview Assets.xcassets */; };
+		A27C0C8B28924F890075532A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8A28924F890075532A /* ProfileView.swift */; };
+		A27C0C8D289250040075532A /* RecyclingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8C289250040075532A /* RecyclingView.swift */; };
+		A27C0C8F289250150075532A /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8E289250150075532A /* ExchangeView.swift */; };
+		A27C0C912892502F0075532A /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C902892502F0075532A /* ClosetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		A27C0C7E28924E220075532A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A27C0C8028924E240075532A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A27C0C8328924E240075532A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A27C0C8A28924F890075532A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A27C0C8C289250040075532A /* RecyclingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecyclingView.swift; sourceTree = "<group>"; };
+		A27C0C8E289250150075532A /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
+		A27C0C902892502F0075532A /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,10 @@
 			children = (
 				A27C0C7C28924E220075532A /* CIRCUSApp.swift */,
 				A27C0C7E28924E220075532A /* ContentView.swift */,
+				A27C0C8C289250040075532A /* RecyclingView.swift */,
+				A27C0C8E289250150075532A /* ExchangeView.swift */,
+				A27C0C902892502F0075532A /* ClosetView.swift */,
+				A27C0C8A28924F890075532A /* ProfileView.swift */,
 				A27C0C8028924E240075532A /* Assets.xcassets */,
 				A27C0C8228924E240075532A /* Preview Content */,
 			);
@@ -138,6 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27C0C7F28924E220075532A /* ContentView.swift in Sources */,
+				A27C0C8D289250040075532A /* RecyclingView.swift in Sources */,
+				A27C0C912892502F0075532A /* ClosetView.swift in Sources */,
+				A27C0C8B28924F890075532A /* ProfileView.swift in Sources */,
+				A27C0C8F289250150075532A /* ExchangeView.swift in Sources */,
 				A27C0C7D28924E220075532A /* CIRCUSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
