@@ -8,31 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     var body: some View {
-        ZStack {
-            TabView {
-                ClosetView()
-                    .tabItem {
-                        Image(systemName: "tshirt.fill")
-                        Text("Closet")
-                    }
-                RecyclingView()
-                    .tabItem {
-                        Image(systemName: "arrow.3.trianglepath")
-                        Text("Recycling")
-                    }
-                ExchangeView()
-                    .tabItem {
-                        Image(systemName: "arrow.left.arrow.right.square")
-                        Text("Exchange")
-                    }
-                ProfileView()
-                    .tabItem{
-                        Image(systemName: "person.crop.circle")
-                        Text("Profile")
-                    }
-            }
+        TabView {
+            ClosetView()
+                .tabItem {
+                    Image(systemName: "tshirt.fill")
+                    Text("Closet")
+                }
+            RecyclingView()
+                .tabItem {
+                    Image(systemName: "arrow.3.trianglepath")
+                    Text("Recycling")
+                }
+            ExchangeView()
+                .tabItem {
+                    Image(systemName: "arrow.left.arrow.right.square")
+                    Text("Exchange")
+                }
+            ProfileView()
+                .tabItem{
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
         }
     }
 }
