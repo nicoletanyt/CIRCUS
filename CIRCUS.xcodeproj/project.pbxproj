@@ -16,7 +16,6 @@
 		A27C0C8F289250150075532A /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8E289250150075532A /* ExchangeView.swift */; };
 		A27C0C912892502F0075532A /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C902892502F0075532A /* ClosetView.swift */; };
 		A27C0C9328925B120075532A /* Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C9228925B120075532A /* Clothes.swift */; };
-		A2869E812894CFEF0041606D /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = A2869E802894CFEF0041606D /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2869E812894CFEF0041606D /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +99,6 @@
 			);
 			name = CIRCUS;
 			packageProductDependencies = (
-				A2869E802894CFEF0041606D /* SwiftUIX */,
 			);
 			productName = CIRCUS;
 			productReference = A27C0C7928924E220075532A /* CIRCUS.app */;
@@ -132,7 +129,6 @@
 			);
 			mainGroup = A27C0C7028924E220075532A;
 			packageReferences = (
-				A2869E7F2894CFEF0041606D /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = A27C0C7A28924E220075532A /* Products */;
 			projectDirPath = "";
@@ -367,25 +363,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A2869E7F2894CFEF0041606D /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A2869E802894CFEF0041606D /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A2869E7F2894CFEF0041606D /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A27C0C7128924E220075532A /* Project object */;
 }

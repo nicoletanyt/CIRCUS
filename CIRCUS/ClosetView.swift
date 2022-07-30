@@ -20,22 +20,22 @@ struct ClosetView: View {
     
     init() { UITableView.appearance().backgroundColor = UIColor.clear }
     
+    //Search Bar variables
+    @State var searchText = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(clothes) { clothe in
-                        NavigationLink {
-                            //do something
-                        } label: {
-                            clothesItemView(sizeText: clothe.size, nameText: clothe.name)
-                        }
+                    ForEach(filteredClothes) { item in
+                        clothesItemView(sizeText: item.size, nameText: item.name)
                     }
                     .onDelete { indexSet in
                         clothes.remove(atOffsets: indexSet)
                     }
                 }
                 .navigationTitle("My Closet")
+                .searchable(text: $searchText )
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         EditButton()
@@ -52,6 +52,13 @@ struct ClosetView: View {
             .background(
                 Image("APP-BACKGROUND")
                     .resizable())
+        }
+    }
+    var filteredClothes: [Clothes] {
+        if searchText.isEmpty {
+            return clothes
+        } else {
+            return clothes.filter { $0.name.localizedStandardContains(searchText)}
         }
     }
 }
