@@ -10,6 +10,7 @@ import SwiftUI
 struct NewClotheItemView: View {
     
     @Binding var clothes: [Clothes]
+    @Environment(\.presentationMode) var presentationMode
     
     //Text Field for Name
     @State var clothesName = ""
@@ -58,7 +59,6 @@ struct NewClotheItemView: View {
             
             //Image Upload
             Button {
-                //ProgressView("Loading...")
                 self.showImagePicker.toggle()
             } label: {
                 Text("Upload Image")
@@ -69,6 +69,7 @@ struct NewClotheItemView: View {
             //Save Item Button
             Button("Save Item") {
                 clothes.append(Clothes(name: clothesName, size: sizeSelection, image: selectedImage))
+                presentationMode.wrappedValue.dismiss()
             }
             
         }

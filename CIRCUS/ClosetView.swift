@@ -14,7 +14,7 @@ extension Color {
 
 struct ClosetView: View {
     
-    @State var clothes = [Clothes(name: "pants", size: "L"), Clothes(name: "shirt", size: "XL"), Clothes(name: "dress", size: "L")]
+    @State var clothes = [Clothes(name: "Hoodie", size: "L", image: Image("HOODIE")), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT")), Clothes(name: "Dress", size: "L")]
     
     @State var isDetailSheetPresented = false
     
@@ -28,7 +28,7 @@ struct ClosetView: View {
             ZStack {
                 List {
                     ForEach(filteredClothes) { item in
-                        clothesItemView(sizeText: item.size, nameText: item.name)
+                        clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image)
                     }
                     .onDelete { indexSet in
                         clothes.remove(atOffsets: indexSet)
@@ -77,14 +77,22 @@ struct clothesItemView: View {
     
     var sizeText: String
     var nameText: String
+    var image: Image?
     
     var body: some View {
         HStack {
-            Image ("")
+            self.image?
+                .resizable()
+                .scaledToFit()
+                .frame(alignment: .leading)
             VStack {
-                Text(sizeText)
-                Text(nameText)
+                Text("Type: " + nameText)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Size: " + sizeText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .padding()
         }
         .frame(height: 100)
     }
