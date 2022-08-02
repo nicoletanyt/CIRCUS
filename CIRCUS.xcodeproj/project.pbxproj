@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A26F41112896434A00A6EC06 /* NewClotheItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26F41102896434A00A6EC06 /* NewClotheItemView.swift */; };
+		A26F411428964E6C00A6EC06 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26F411328964E6C00A6EC06 /* ImagePicker.swift */; };
 		A27C0C7D28924E220075532A /* CIRCUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C7C28924E220075532A /* CIRCUSApp.swift */; };
 		A27C0C7F28924E220075532A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C7E28924E220075532A /* ContentView.swift */; };
 		A27C0C8128924E240075532A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27C0C8028924E240075532A /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A26F41102896434A00A6EC06 /* NewClotheItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClotheItemView.swift; sourceTree = "<group>"; };
+		A26F411328964E6C00A6EC06 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A27C0C7928924E220075532A /* CIRCUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIRCUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27C0C7C28924E220075532A /* CIRCUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIRCUSApp.swift; sourceTree = "<group>"; };
 		A27C0C7E28924E220075532A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A26F411228964E3000A6EC06 /* Image Picker */ = {
+			isa = PBXGroup;
+			children = (
+				A26F411328964E6C00A6EC06 /* ImagePicker.swift */,
+			);
+			path = "Image Picker";
+			sourceTree = "<group>";
+		};
 		A27C0C7028924E220075532A = {
 			isa = PBXGroup;
 			children = (
@@ -61,11 +73,13 @@
 		A27C0C7B28924E220075532A /* CIRCUS */ = {
 			isa = PBXGroup;
 			children = (
+				A26F411228964E3000A6EC06 /* Image Picker */,
 				A27C0C7C28924E220075532A /* CIRCUSApp.swift */,
 				A27C0C7E28924E220075532A /* ContentView.swift */,
 				A27C0C8C289250040075532A /* RecyclingView.swift */,
 				A27C0C8E289250150075532A /* ExchangeView.swift */,
 				A27C0C902892502F0075532A /* ClosetView.swift */,
+				A26F41102896434A00A6EC06 /* NewClotheItemView.swift */,
 				A27C0C9228925B120075532A /* Clothes.swift */,
 				A27C0C8A28924F890075532A /* ProfileView.swift */,
 				A27C0C8028924E240075532A /* Assets.xcassets */,
@@ -159,8 +173,10 @@
 				A27C0C7F28924E220075532A /* ContentView.swift in Sources */,
 				A27C0C9328925B120075532A /* Clothes.swift in Sources */,
 				A27C0C8D289250040075532A /* RecyclingView.swift in Sources */,
+				A26F411428964E6C00A6EC06 /* ImagePicker.swift in Sources */,
 				A27C0C912892502F0075532A /* ClosetView.swift in Sources */,
 				A27C0C8B28924F890075532A /* ProfileView.swift in Sources */,
+				A26F41112896434A00A6EC06 /* NewClotheItemView.swift in Sources */,
 				A27C0C8F289250150075532A /* ExchangeView.swift in Sources */,
 				A27C0C7D28924E220075532A /* CIRCUSApp.swift in Sources */,
 			);

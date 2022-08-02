@@ -14,7 +14,7 @@ extension Color {
 
 struct ClosetView: View {
     
-    @State var clothes = [Clothes(name: "PANTS", size: "L"), Clothes(name: "SHIRT", size: "XL"), Clothes(name: "DRESS", size: "L")]
+    @State var clothes = [Clothes(name: "pants", size: "L"), Clothes(name: "shirt", size: "XL"), Clothes(name: "dress", size: "L")]
     
     @State var isDetailSheetPresented = false
     
@@ -47,6 +47,9 @@ struct ClosetView: View {
                             Image(systemName: "plus")
                         }
                     }
+                }
+                .sheet(isPresented: $isDetailSheetPresented) {
+                    NewClotheItemView(clothes: $clothes)
                 }
             }
             .background(
