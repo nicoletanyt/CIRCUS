@@ -21,7 +21,8 @@ struct NewClotheItemView: View {
     
     //photo
     @State var showImagePicker: Bool = false
-    @State var selectedImage: Image? = Image("") //show selected image
+    @State var imageButtonPressed: Bool = false
+    @State private var image = UIImage()
     
     var body: some View {
         VStack {
@@ -60,21 +61,29 @@ struct NewClotheItemView: View {
             //Image Upload
             Button {
                 self.showImagePicker.toggle()
+                self.imageButtonPressed.toggle()
             } label: {
                 Text("Upload Image")
             }
-            self.selectedImage?.resizable().scaledToFit()
+            Image(uiImage: self.image)
+                .resizable().scaledToFit()
                 .frame(width: 200, height: 200, alignment: .center)
+                .padding()
             
             //Save Item Button
             Button("Save Item") {
-                clothes.append(Clothes(name: clothesName, size: sizeSelection, image: selectedImage))
+                if (imageButtonPressed == false) {
+                    clothes.append(Clothes(name: clothesName, size: sizeSelection, image: nil))
+                } else {
+                    clothes.append(Clothes(name: clothesName, size: sizeSelection, image: Image(uiImage:self.image)))
+                }
                 presentationMode.wrappedValue.dismiss()
             }
             
         }
         .sheet(isPresented: $showImagePicker) {
-            ImagePicker(image: self.$selectedImage)
+            //ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
+            ImagePicker(selectedImage: self.$image, sourceType: .camera)
         }
     }
 }
