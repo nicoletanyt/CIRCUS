@@ -23,9 +23,11 @@ struct NewClotheItemView: View {
     @State var showImagePicker: Bool = false
     @State var imageButtonPressed: Bool = false
     @State private var image = UIImage()
+    @State var takePhoto: Bool = false
     
     var body: some View {
         VStack {
+            Spacer()
             //Text Field
             HStack{
                 Image(systemName: "tshirt.fill")
@@ -39,7 +41,7 @@ struct NewClotheItemView: View {
                         .foregroundColor(Color.gray)
                 }
             }
-            .padding(40)
+            .padding(60)
             
             //Size Selection Picker View
             HStack {
@@ -59,15 +61,41 @@ struct NewClotheItemView: View {
             .padding()
             
             //Image Upload
-            Button {
-                self.showImagePicker.toggle()
-                self.imageButtonPressed.toggle()
-            } label: {
-                Text("Upload Image")
+            HStack {
+                HStack {
+                    Button {
+                        self.showImagePicker.toggle()
+                        self.imageButtonPressed.toggle()
+                        takePhoto = false
+                    } label: {
+                        Text("Upload Image")
+                    }
+                    Image(systemName: "photo")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(15)
+                HStack {
+                    Button {
+                        self.showImagePicker.toggle()
+                        self.imageButtonPressed.toggle()
+                        takePhoto = true
+                    } label: {
+                        Text("Take Photo")
+                    }
+                    Image(systemName: "camera.fill")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .cornerRadius(15)
             }
+            .padding()
+            
             Image(uiImage: self.image)
                 .resizable().scaledToFit()
-                .frame(width: 200, height: 200, alignment: .center)
+                //.frame(width: 200, height: 200, alignment: .center)
                 .padding()
             
             //Save Item Button
@@ -79,11 +107,20 @@ struct NewClotheItemView: View {
                 }
                 presentationMode.wrappedValue.dismiss()
             }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(Color.white)
+            .cornerRadius(15)
+            Spacer()
             
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .sheet(isPresented: $showImagePicker) {
-            //ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
-            ImagePicker(selectedImage: self.$image, sourceType: .camera)
+            if takePhoto {
+                ImagePicker(selectedImage: self.$image, sourceType: .camera)
+            } else {
+                ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
+            }
         }
     }
 }

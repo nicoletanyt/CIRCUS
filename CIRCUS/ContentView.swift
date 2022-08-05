@@ -22,8 +22,8 @@ struct ContentView: View {
                 }
             ExchangeView()
                 .tabItem {
-                    Image(systemName: "arrow.left.arrow.right.square")
-                    Text("Exchange")
+                    Image(systemName: "arrow.right.square.fill")
+                    Text("Donate")
                 }
             ProfileView()
                 .tabItem{
@@ -34,8 +34,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
