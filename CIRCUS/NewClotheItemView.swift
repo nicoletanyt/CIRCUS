@@ -95,7 +95,8 @@ struct NewClotheItemView: View {
             
             Image(uiImage: self.image)
                 .resizable().scaledToFit()
-                //.frame(width: 200, height: 200, alignment: .center)
+                .clipShape(Circle())
+                .frame(width: 150, height: 150)
                 .padding()
             
             //Save Item Button

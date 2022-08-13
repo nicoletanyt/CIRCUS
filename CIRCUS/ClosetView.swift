@@ -19,6 +19,7 @@ struct ClosetView: View {
     @State var isDetailSheetPresented = false
     
     init() { UITableView.appearance().backgroundColor = UIColor.clear }
+    @Environment(\.colorScheme) var colorScheme
     
     //Search Bar variables
     @State var searchText = ""
@@ -53,7 +54,7 @@ struct ClosetView: View {
                 }
             }
             .background(
-                Image("APP-BACKGROUND")
+                Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
                     .resizable())
         }
     }
@@ -83,8 +84,9 @@ struct clothesItemView: View {
         HStack {
             self.image?
                 .resizable()
+                //.aspectRatio(contentMode: .fit)
                 .scaledToFit()
-                .frame(alignment: .leading)
+                .mask(Circle().frame(width: 80, height: 80, alignment: .leading))
             VStack {
                 Text("Type: " + nameText)
                     .bold()
