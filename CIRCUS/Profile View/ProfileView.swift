@@ -10,23 +10,27 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var location = ""
+    @State var currentAvatar = "BADGE1"
     
     var body: some View {
         NavigationView {
             Form {
-                ZStack {
-                    Image("SHIRT")
+                HStack {
+                    Image(currentAvatar) //current avatar
                         .resizable()
                         .frame(width: 150, height: 150)
                         .scaledToFit()
                         .mask(RoundedRectangle(cornerRadius: 30))
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    NavigationLink (destination: EditImageView(currentAvatar: currentAvatar)){
+                        Text("Edit")
+                            .foregroundColor(Color.blue)
+                            .padding(30)
+                    }
                 }
                 
                 Section {
                     VStack {
                         Text("Enter a convenient place for you to make clothes exchanges with others.")
-                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()
                         Spacer()
                         HStack {
@@ -52,3 +56,4 @@ struct ProfileView: View {
 //        ProfileView()
 //    }
 //
+//}
