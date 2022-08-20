@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 class LocationManager: ObservableObject {
-    @Published var locations: [Location] = [] {
+    @Published var locations: [String] = [] {
         didSet {
             save()
         }
     }
     
-    let sampleLocations: [Location] = []
+    let sampleLocations: [String] = []
     
     init() {
         load()
@@ -39,15 +39,59 @@ class LocationManager: ObservableObject {
         let archiveURL = getArchiveURL()
         let propertyListDecoder = PropertyListDecoder()
         
-        var finalLocations: [Location]!
+        var finalLocations: [String]!
         
         if let retrievedLocationData = try? Data(contentsOf: archiveURL),
-            let decodedLocations = try? propertyListDecoder.decode([Location].self, from: retrievedLocationData) {
+            let decodedLocations = try? propertyListDecoder.decode([String].self, from: retrievedLocationData) {
             finalLocations = decodedLocations
         } else {
             finalLocations = sampleLocations
         }
         
         locations = finalLocations
+    }
+}
+
+class CurrentLocationManager: ObservableObject {
+    @Published var currentLocations: [String] = [] { //@Published: page would be reloaded when this variable is changed
+        didSet {
+            save()
+        }
+    }
+
+    let sampleCurrentLocations: [String] = []
+
+    init() {
+        load()
+    }
+
+    func getArchiveURL() -> URL {
+        let plistName = "currentLocations.plist"
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+
+        return documentsDirectory.appendingPathComponent(plistName)
+    }
+
+    func save() {
+        let archiveURL = getArchiveURL()
+        let propertyListEncoder = PropertyListEncoder()
+        let encodedCurrentLocations = try? propertyListEncoder.encode(currentLocations)
+        try? encodedCurrentLocations?.write(to: archiveURL, options: .noFileProtection)
+    }
+
+    func load() {
+        let archiveURL = getArchiveURL()
+        let propertyListDecoder = PropertyListDecoder()
+
+        var finalCurrentLocations: [String]!
+
+        if let retrievedCurrentLocationData = try? Data(contentsOf: archiveURL),
+            let decodedCurrentLocations = try? propertyListDecoder.decode([String].self, from: retrievedCurrentLocationData) {
+            finalCurrentLocations = decodedCurrentLocations
+        } else {
+            finalCurrentLocations = sampleCurrentLocations
+        }
+
+        currentLocations = finalCurrentLocations
     }
 }

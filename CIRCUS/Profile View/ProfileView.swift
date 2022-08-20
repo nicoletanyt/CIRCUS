@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var currentAvatar = "BADGE1"
-    @State var currentLocation = "NIL"
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
@@ -33,9 +32,7 @@ struct ProfileView: View {
                     Text("YOUR AVATARS")
                 }
                 Section  {
-                    NavigationLink (destination: EnterLocationView(currentLocation: $currentLocation)) {
-                        Text(currentLocation)
-                    }
+                    DisplayLocation(locations: $locationManager.locations)
                 } header: {
                     Text("LOCATION")
                 }
@@ -48,6 +45,16 @@ struct ProfileView: View {
     }
 }
 
+struct DisplayLocation: View {
+    //@ObservedObject var currentLocationManager = CurrentLocationManager()
+    @Binding var locations: [String]
+    
+    var body: some View {
+        NavigationLink (destination: EnterLocationView()) {
+            Text(locations.last!)
+        }
+    }
+}
 
 //struct ProfileView_Previews: PreviewProvider {
 //    static var previews: some View {

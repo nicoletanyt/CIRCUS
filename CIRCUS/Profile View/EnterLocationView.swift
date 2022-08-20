@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct EnterLocationView: View {
-    @Binding var currentLocation: String
+    //@Binding var currentLocation: String //for textfield binding
     @State var isShowSheet: Bool = false
     @StateObject var locationManager = LocationManager()
+    @StateObject var currentLocationManager = CurrentLocationManager()
     
     var body: some View {
         Form {
@@ -22,7 +23,7 @@ struct EnterLocationView: View {
                 Button {
                     isShowSheet = true
                 } label: {
-                    Text(currentLocation)
+                    Text(currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
                         .foregroundColor(Color.black)
                 }
             } header: {
@@ -30,9 +31,19 @@ struct EnterLocationView: View {
             }
             Section {
                 List {
-                    Text("NIL")
+//                    Button {
+//                        locationManager.locations.append("NIL")
+//                    } label: {
+//                        Text("NIL") //NIL button, aka default location
+//                            .foregroundColor(Color.black)
+//                    }
                     ForEach($locationManager.locations, id: \.self) { $location in
-                        Text(location.location)
+                        Button {
+                            currentLocationManager.currentLocations.append(location)
+                        } label: {
+                            Text(location)
+                                .foregroundColor(Color.black)
+                        }
                     }
                 }
             } header: {
@@ -41,16 +52,20 @@ struct EnterLocationView: View {
             Spacer()
         }
         .sheet(isPresented: $isShowSheet) {
-            LocationTextField(location: $currentLocation, pastLocations: $locationManager.locations)
+            LocationTextField(locations: $locationManager.locations) //or is this $currentLocation?
         }
     }
 }
 
 struct LocationTextField: View {
     
+    //@Binding var pastLocations: [Location]
+//    @ObservedObject var currentLocationManager = CurrentLocationManager() //for storing past locations ^
+//    @ObservedObject var locationManager = LocationManager()
+    
     @Environment(\.presentationMode) var presentationMode
-    @Binding var location: String
-    @Binding var pastLocations: [Location]
+    @State var location = "" //for the text field
+    @Binding var locations: [String]
     
     var body: some View {
         VStack {
@@ -61,7 +76,9 @@ struct LocationTextField: View {
                         .bold()
                     Spacer(minLength: 100)
                     Button {
-                        pastLocations.append(Location(location: location, currentLocation: location))
+//                        locationManager.locations.append(location) //input from text field
+//                        currentLocationManager.currentLocations.append(location)
+                        locations.append(location)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Save")
