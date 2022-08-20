@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     @State var currentAvatar = "BADGE1"
     @State var currentLocation = "NIL"
+    @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
         NavigationView {

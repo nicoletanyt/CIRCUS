@@ -10,9 +10,7 @@ import SwiftUI
 struct EnterLocationView: View {
     @Binding var currentLocation: String
     @State var isShowSheet: Bool = false
-    @State var isCancel: Bool = false
-    @State var pastLocations: [Location] = [Location(location: "NIL")]
-    
+    @StateObject var locationManager = LocationManager()
     
     var body: some View {
         Form {
@@ -32,7 +30,8 @@ struct EnterLocationView: View {
             }
             Section {
                 List {
-                    ForEach(pastLocations, id: \.self) { location in
+                    Text("NIL")
+                    ForEach($locationManager.locations, id: \.self) { $location in
                         Text(location.location)
                     }
                 }
@@ -42,14 +41,8 @@ struct EnterLocationView: View {
             Spacer()
         }
         .sheet(isPresented: $isShowSheet) {
-            LocationTextField(location: $currentLocation, pastLocations: $pastLocations)
+            LocationTextField(location: $currentLocation, pastLocations: $locationManager.locations)
         }
-        //            HStack {
-        //                Image(systemName: "location.circle.fill")
-        //                    .foregroundColor(Color.gray)
-        //                TextField("Location", text: $location)
-        //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-        //            }
     }
 }
 
@@ -68,7 +61,7 @@ struct LocationTextField: View {
                         .bold()
                     Spacer(minLength: 100)
                     Button {
-                        pastLocations.append(Location(location: location))
+                        pastLocations.append(Location(location: location, currentLocation: location))
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Save")

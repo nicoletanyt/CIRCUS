@@ -9,4 +9,5 @@ import Foundation
 
 struct Location: Codable, Hashable  {
     var location: String
+    var currentLocation: String
 }
