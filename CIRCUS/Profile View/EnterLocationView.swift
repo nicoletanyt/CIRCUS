@@ -12,38 +12,52 @@ struct EnterLocationView: View {
     @State var isShowSheet: Bool = false
     @StateObject var locationManager = LocationManager()
     @StateObject var currentLocationManager = CurrentLocationManager()
+    @State var isCheckedArray: String = ""
     
     var body: some View {
         Form {
             Section {
-                Text("Enter a convenient place for you to make clothes exchanges with others.")
+                Text("Enter a convenient place for you to recycle or donate your clothes.")
                     .font(.system(size: 20, weight: .regular, design: .serif))
             }
             Section {
                 Button {
                     isShowSheet = true
                 } label: {
-                    Text(currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
-                        .foregroundColor(Color.black)
+                    HStack {
+                        Text(currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
+                            .foregroundColor(Color.black)
+                        Spacer()
+                        Image(systemName: "checkmark")
+                            .foregroundColor(Color.blue)
+                            .frame(width: 24, height: 24, alignment: .trailing)
+                    }
                 }
             } header: {
                 Text("CURRENTLY SET TO")
             }
             Section {
                 List {
-//                    Button {
-//                        locationManager.locations.append("NIL")
-//                    } label: {
-//                        Text("NIL") //NIL button, aka default location
-//                            .foregroundColor(Color.black)
-//                    }
                     ForEach($locationManager.locations, id: \.self) { $location in
                         Button {
+                            isCheckedArray = location
                             currentLocationManager.currentLocations.append(location)
                         } label: {
-                            Text(location)
-                                .foregroundColor(Color.black)
+                            HStack {
+                                Text(location)
+                                    .foregroundColor(Color.black)
+                                Spacer()
+                                Image(systemName: isCheckedArray == location ? "checkmark" : "")
+                                    .foregroundColor(Color.blue)
+                            }
                         }
+                        .listRowBackground(isCheckedArray == location ? Color.gray .opacity(0.2) : Color.white)
+                    }
+                    .onDelete { indexSet in
+                        locationManager.locations.remove(atOffsets: indexSet )
+                    }
+                    .onMove { indices, newOffset in
+                        locationManager.locations.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
             } header: {
@@ -53,6 +67,11 @@ struct EnterLocationView: View {
         }
         .sheet(isPresented: $isShowSheet) {
             LocationTextField(locations: $locationManager.locations) //or is this $currentLocation?
+        }
+        .toolbar {
+            ToolbarItem {
+                EditButton()
+            }
         }
     }
 }
