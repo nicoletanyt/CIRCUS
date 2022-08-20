@@ -21,7 +21,7 @@ struct EditImageView: View {
     var body: some View {
         NavigationView {
             VStack{
-                Text("CURRENT AVATAR: ")
+                Text("Current Avatar: ")
                     .background(Color.brown.opacity(0.3))
                 Image(currentAvatar)
                     .resizable()
