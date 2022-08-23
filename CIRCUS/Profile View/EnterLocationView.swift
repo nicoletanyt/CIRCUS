@@ -25,7 +25,7 @@ struct EnterLocationView: View {
                     isShowSheet = true
                 } label: {
                     HStack {
-                        Text(currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
+                        Text(currentLocationManager.currentLocations.last == nil ? "NIL" : currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
                             .foregroundColor(Color.black)
                         Spacer()
                         Image(systemName: "checkmark")

@@ -33,7 +33,7 @@ struct ProfileView: View {
                 }
                 Section  {
                     NavigationLink (destination: EnterLocationView()) {
-                        Text(currentLocationManager.currentLocations.last!)
+                        Text(currentLocationManager.currentLocations.last == nil ? "NIL" : currentLocationManager.currentLocations.last!)
                     }
                     Text("PLEASE QUIT THE APP TO RELOAD.")
                         .foregroundColor(Color.red)

@@ -26,8 +26,8 @@ struct CouponView: View {
                 }
             } header: {
                 Text("Recycling")
+                    .bold()
             }
-            Spacer()
             Section {
                 ForEach(couponsDonate) { coupon in
                     NavigationLink {
@@ -38,6 +38,7 @@ struct CouponView: View {
                 }
             } header: {
                 Text("Donate")
+                    .bold() 
             }
         }
     }

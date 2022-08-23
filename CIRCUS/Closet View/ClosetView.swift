@@ -24,15 +24,30 @@ struct ClosetView: View {
     //Search Bar variables
     @State var searchText = ""
     
+    var filteredClothes: [Clothes] {
+        if searchText.isEmpty {
+            return clothes
+        } else {
+            return clothes.filter { $0.name.localizedStandardContains(searchText)}
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(filteredClothes) { item in
-                        clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image)
+                    ForEach($clothes) { $item in
+                        NavigationLink {
+                            DetailedClothesItemView(clothes: $item)
+                        } label: {
+                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image)
+                        }
                     }
                     .onDelete { indexSet in
                         clothes.remove(atOffsets: indexSet)
+                    }
+                    .onMove { indices, newOffset in
+                        clothes.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
                 .navigationTitle("My Closet")
@@ -56,13 +71,6 @@ struct ClosetView: View {
             .background(
                 Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
                     .resizable())
-        }
-    }
-    var filteredClothes: [Clothes] {
-        if searchText.isEmpty {
-            return clothes
-        } else {
-            return clothes.filter { $0.name.localizedStandardContains(searchText)}
         }
     }
 }

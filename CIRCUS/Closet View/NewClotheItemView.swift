@@ -23,7 +23,7 @@ struct NewClotheItemView: View {
     @State var showImagePicker: Bool = false
     @State var imageButtonPressed: Bool = false
     @State private var image = UIImage()
-    @State var takePhoto: Bool = false
+    @State var takePhoto: Bool = true
     
     var body: some View {
         VStack {
