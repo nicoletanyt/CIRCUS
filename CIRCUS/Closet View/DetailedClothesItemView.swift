@@ -22,13 +22,19 @@ struct DetailedClothesItemView: View {
                         .resizable()
                         .frame(width: 150, height: 150, alignment: .center)
                 } header: {
-                    Text("IMAGE")
+                    Text("Image")
                 }
                 Section {
                     TextField("Edit clothing type", text: $clothes.name)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }header: {
-                    Text("NAME")
+                    Text("Name")
+                }
+                Section {
+                    TextField("Edit Brand", text: $clothes.brand)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }header: {
+                    Text("Brand")
                 }
 
                 Section {
@@ -43,7 +49,7 @@ struct DetailedClothesItemView: View {
                         .pickerStyle(.menu)
                     }
                 } header: {
-                    Text("SIZE")
+                    Text("Size")
                 }
                 Section {
                     CouponView()

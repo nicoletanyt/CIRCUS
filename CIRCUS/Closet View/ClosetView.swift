@@ -14,7 +14,7 @@ extension Color {
 
 struct ClosetView: View {
     
-    @State var clothes = [Clothes(name: "Hoodie", size: "L", image: Image("HOODIE")), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT")), Clothes(name: "Dress", size: "L")]
+    @State var clothes = [Clothes(name: "Hoodie", size: "L", image: Image("HOODIE"), brand: "H&M"), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT"), brand: "NIL"), Clothes(name: "Dress", size: "L",brand: "NIL")]
     
     @State var isDetailSheetPresented = false
     
@@ -40,7 +40,7 @@ struct ClosetView: View {
                         NavigationLink {
                             DetailedClothesItemView(clothes: $item)
                         } label: {
-                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image)
+                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image, brandText: item.brand)
                         }
                     }
                     .onDelete { indexSet in
@@ -87,6 +87,7 @@ struct clothesItemView: View {
     var sizeText: String
     var nameText: String
     var image: Image?
+    var brandText: String
     
     var body: some View {
         HStack {
@@ -101,6 +102,10 @@ struct clothesItemView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text("Size: " + sizeText)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.system(size: 15))
+                Text("Brand: " + brandText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.system(size: 15))
             }
             .padding()
         }

@@ -15,6 +15,9 @@ struct NewClotheItemView: View {
     //Text Field for Name
     @State var clothesName = ""
     
+    //Text field for brand
+    @State var brandName = ""
+    
     //Picker
     @State var sizeSelection: String = "M"
     let sizeOptions: [String] = ["XS", "S", "M", "L", "XL", "XXL"]
@@ -23,106 +26,133 @@ struct NewClotheItemView: View {
     @State var showImagePicker: Bool = false
     @State var imageButtonPressed: Bool = false
     @State private var image = UIImage()
-    @State var takePhoto: Bool = true
+    @State var takePhoto: Bool = false
     
     var body: some View {
-        VStack {
-            Spacer()
-            //Text Field
-            HStack{
-                Image(systemName: "tshirt.fill")
-                    .foregroundColor(Color.gray)
-                TextField("Enter the clothing type", text: $clothesName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button {
-                    //Clear text field
-                } label: {
-                    Image(systemName: "x.circle.fill")
-                        .foregroundColor(Color.gray)
+        Form {
+            //Name text field
+            Section{
+                HStack {
+                    Image(systemName: "tshirt.fill")
+                        .foregroundColor(Color.blue)
+                    TextField("Enter the clothing type", text: $clothesName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button {
+                        clothesName = ""
+                    } label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(Color.red)
+                    }
                 }
+            } header: {
+                Text("Clothing Type")
             }
-            .padding(60)
-            
+            //Brand text field
+            Section {
+                HStack {
+                    Image(systemName: "bag.fill")
+                        .foregroundColor(Color.blue)
+                    TextField("Enter the brand name", text: $brandName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button {
+                        brandName = ""
+                    } label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(Color.red)
+                    }
+                }
+            } header: {
+                Text("Brand")
+            }
             //Size Selection Picker View
-            HStack {
-                Text("Size: ")
-                Text(sizeSelection)
-            }
-            Picker (selection: $sizeSelection) {
-                ForEach(sizeOptions, id: \.self) { option in
-                    Text(option)
-                        .tag(option)
-                }
-            } label: {
-                Text("Picker")
-            }
-            .pickerStyle(WheelPickerStyle())
-            .multilineTextAlignment(.center)
-            .padding()
-            
-            //Image Upload
-            HStack {
+            Section {
                 HStack {
-                    Button {
-                        self.showImagePicker.toggle()
-                        self.imageButtonPressed.toggle()
-                        takePhoto = false
-                    } label: {
+                    Text("Size: ")
+                    Text(sizeSelection)
+                }
+                Picker (selection: $sizeSelection) {
+                    ForEach(sizeOptions, id: \.self) { option in
+                        Text(option)
+                            .tag(option)
+                    }
+                } label: {
+                    Text("Picker")
+                }
+                .pickerStyle(WheelPickerStyle())
+            } header: {
+                Text("Size Picker")
+            }
+            
+            Section {
+                //Upload the image
+                Button {
+                    self.takePhoto = false
+                    self.showImagePicker.toggle()
+                    self.imageButtonPressed.toggle()
+                } label: {
+                    HStack{
                         Text("Upload Image")
+                        Image(systemName: "photo")
                     }
-                    Image(systemName: "photo")
                 }
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(Color.white)
                 .cornerRadius(15)
-                HStack {
-                    Button {
-                        self.showImagePicker.toggle()
-                        self.imageButtonPressed.toggle()
-                        takePhoto = true
-                    } label: {
+            } header: {
+                Text("Upload Image")
+            } footer: {
+                Text("Scroll down to view a preview of the photo")
+            }
+            Section {
+                //take photo
+                Button {
+                    self.takePhoto = true
+                    self.showImagePicker.toggle()
+                    self.imageButtonPressed.toggle()
+                } label: {
+                    HStack{
                         Text("Take Photo")
+                        Image(systemName: "camera.fill")
                     }
-                    Image(systemName: "camera.fill")
                 }
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(Color.white)
                 .cornerRadius(15)
+            } header: {
+                Text("Take a photo")
             }
-            .padding()
-            
-            Image(uiImage: self.image)
-                .resizable().scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 150, height: 150)
-                .padding()
-            
-            //Save Item Button
-            Button("Save Item") {
-                if (imageButtonPressed == false) {
-                    clothes.append(Clothes(name: clothesName, size: sizeSelection, image: nil))
-                } else {
-                    clothes.append(Clothes(name: clothesName, size: sizeSelection, image: Image(uiImage:self.image)))
-                }
-                presentationMode.wrappedValue.dismiss()
+            Divider()
+            Section {
+                //Show image
+                Image(uiImage: self.image)
+                    .resizable().scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 120, height: 120)
+                    .padding()
+            } header: {
+                Text("Image Preview")
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(Color.white)
-            .cornerRadius(15)
-            Spacer()
-            
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .sheet(isPresented: $showImagePicker) {
-            if takePhoto {
-                ImagePicker(selectedImage: self.$image, sourceType: .camera)
-            } else {
-                ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
-            }
+            ImagePicker(selectedImage: self.$image, sourceType: takePhoto ? .camera : .photoLibrary)
         }
+        
+        //Save Item Button
+        Button("Save Item") {
+            if (imageButtonPressed == false) {
+                clothes.append(Clothes(name: clothesName, size: sizeSelection, image: nil, brand: brandName))
+            } else {
+                clothes.append(Clothes(name: clothesName, size: sizeSelection, image: Image(uiImage:self.image), brand: brandName))
+            }
+            presentationMode.wrappedValue.dismiss()
+        }
+        .padding()
+        .background(Color.green)
+        .foregroundColor(Color.white)
+        .cornerRadius(15)
     }
 }
 

@@ -14,4 +14,5 @@ struct Clothes: Identifiable {
     var name: String
     var size: String
     var image: Image?
+    var brand: String
 }
