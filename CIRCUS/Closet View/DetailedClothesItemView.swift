@@ -52,7 +52,9 @@ struct DetailedClothesItemView: View {
                     Text("Size")
                 }
                 Section {
-                    CouponView()
+                    CouponView(clothes: $clothes)
+                } header: {
+                    Text("Coupons")
                 }
                 Spacer()
             }

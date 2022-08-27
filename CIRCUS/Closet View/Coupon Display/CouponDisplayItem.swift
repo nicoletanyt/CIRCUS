@@ -11,15 +11,16 @@ struct CouponDisplayItem: View {
     
     @State var coupon: Coupon
     
+    
     var body: some View {
         HStack {
-            Image(companyLogos[coupon.company]!)
+            Image(coupon.imageString)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 128, height: 128, alignment: .leading)
+                .frame(width: 100, height: 100, alignment: .leading)
                 .padding()
             VStack {
-                Text(coupon.name)
+                Text(coupon.name ?? coupon.company)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(coupon.company)

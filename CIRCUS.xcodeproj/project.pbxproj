@@ -27,7 +27,6 @@
 		A2D18A0428B325E5001F3B78 /* DetailedClothesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D18A0328B325E5001F3B78 /* DetailedClothesItemView.swift */; };
 		A2DAA54D28ACAF2A0047948F /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DAA54C28ACAF2A0047948F /* Avatar.swift */; };
 		A2EDDFE928A5D71C00E99540 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EDDFE828A5D71C00E99540 /* Coupon.swift */; };
-		A2EDDFEB28A5D85800E99540 /* CouponDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EDDFEA28A5D85800E99540 /* CouponDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		A2D18A0328B325E5001F3B78 /* DetailedClothesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedClothesItemView.swift; sourceTree = "<group>"; };
 		A2DAA54C28ACAF2A0047948F /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		A2EDDFE828A5D71C00E99540 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
-		A2EDDFEA28A5D85800E99540 /* CouponDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				A2234A0828AB192800664AE0 /* CouponDisplayItem.swift */,
-				A2EDDFEA28A5D85800E99540 /* CouponDetailView.swift */,
 				A2234A0628AB180800664AE0 /* CouponView.swift */,
 			);
 			path = "Coupon Display";
@@ -103,7 +100,6 @@
 		A27C0C7028924E220075532A = {
 			isa = PBXGroup;
 			children = (
-				A248EEBA28B07334002FE57B /* LocationManager.swift */,
 				A27C0C7B28924E220075532A /* CIRCUS */,
 				A27C0C7A28924E220075532A /* Products */,
 			);
@@ -120,16 +116,17 @@
 		A27C0C7B28924E220075532A /* CIRCUS */ = {
 			isa = PBXGroup;
 			children = (
+				A27C0C8028924E240075532A /* Assets.xcassets */,
 				A22CB8D8289A3F2D00058C36 /* Info.plist */,
 				A27C0C7C28924E220075532A /* CIRCUSApp.swift */,
 				A27C0C7E28924E220075532A /* ContentView.swift */,
+				A248EEBA28B07334002FE57B /* LocationManager.swift */,
 				A27C0C8C289250040075532A /* RecyclingView.swift */,
 				A27C0C8E289250150075532A /* ExchangeView.swift */,
 				A2DAA54C28ACAF2A0047948F /* Avatar.swift */,
 				A2EDDFE828A5D71C00E99540 /* Coupon.swift */,
 				A27C0C9228925B120075532A /* Clothes.swift */,
 				A2234A0B28AB195E00664AE0 /* Profile View */,
-				A27C0C8028924E240075532A /* Assets.xcassets */,
 				A2234A0528AB17D500664AE0 /* Closet View */,
 				A27C0C8228924E240075532A /* Preview Content */,
 			);
@@ -231,7 +228,6 @@
 				A2234A0728AB180800664AE0 /* CouponView.swift in Sources */,
 				A27C0C8B28924F890075532A /* ProfileView.swift in Sources */,
 				A26F41112896434A00A6EC06 /* NewClotheItemView.swift in Sources */,
-				A2EDDFEB28A5D85800E99540 /* CouponDetailView.swift in Sources */,
 				A2D18A0428B325E5001F3B78 /* DetailedClothesItemView.swift in Sources */,
 				A2234A0D28AB1F6E00664AE0 /* EditImageView.swift in Sources */,
 				A27C0C8F289250150075532A /* ExchangeView.swift in Sources */,

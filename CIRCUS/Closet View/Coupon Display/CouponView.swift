@@ -9,36 +9,25 @@ import SwiftUI
 
 struct CouponView: View {
     
-    //Coupons Information
-    var coupons: [Coupon] = [Coupon(name: "$30 off per piece", company: "H&M", type: "Recycling"), Coupon(name: "$20 discount", company: "LEVI'S", type: "Donate")]
-    var couponsRecycling: [Coupon] { coupons.filter( {$0.type.localizedStandardContains("Recycling")} )}
-    var couponsDonate: [Coupon] { coupons.filter( {$0.type.localizedStandardContains("Donate")} )}
+    @Binding var clothes: Clothes
+    
+    var couponsAvailable: [Coupon] {
+        forAllItems + forCertainBrands.filter( {clothes.brand.localizedStandardContains($0.company)} ) + forCertainItems.filter( {
+            $0.clothingType.contains(where: {
+                $0.range(of: clothes.name, options: .caseInsensitive) != nil
+            })
+        }
+        )
+    }
     
     var body: some View {
-        List {
-            Section {
-                ForEach(couponsRecycling) { coupon in
-                    NavigationLink {
-                        CouponDetailView(coupon: coupon)
-                    } label: {
-                        CouponDisplayItem(coupon: coupon)
-                    }
+        return List {
+            ForEach(couponsAvailable) { coupon in
+                NavigationLink {
+                    //web view to the link
+                } label: {
+                    CouponDisplayItem(coupon: coupon)
                 }
-            } header: {
-                Text("Recycling")
-                    .bold()
-            }
-            Section {
-                ForEach(couponsDonate) { coupon in
-                    NavigationLink {
-                        CouponDetailView(coupon: coupon)
-                    } label: {
-                        CouponDisplayItem(coupon: coupon)
-                    }
-                }
-            } header: {
-                Text("Donate")
-                    .bold() 
             }
         }
     }
