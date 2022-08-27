@@ -23,8 +23,11 @@ struct CouponDisplayItem: View {
                 Text(coupon.name ?? coupon.company)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(coupon.company)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if coupon.name != nil{
+                    Text(coupon.company)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                }
             }
         }
     }

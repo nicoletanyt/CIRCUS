@@ -21,7 +21,7 @@ struct CouponView: View {
     }
     
     var body: some View {
-        return List {
+        List {
             ForEach(couponsAvailable) { coupon in
                 NavigationLink {
                     //web view to the link

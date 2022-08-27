@@ -26,10 +26,10 @@ var allCoupon = [
     Coupon(company: "Green square", type: "Donate", imageString: "GREENSQUARE-LOGO", forType: "all"),
     Coupon(company: "The Salvation Army", type: "Donate", imageString: "THE-SALVATION-ARMY-LOGO", forType: "all"),
     Coupon(name: "5% off wt+ voucher when you drop off garments", company: "Wing Tai Retail stores", type: "Credits for their store", imageString: "WING-TAI-LOGO", forType: "all"),
-    Coupon(name: "Trade-in values range from $10 to $100, payable as store credit for use at online or Worn Wear stores.", company: "Patagonia", type: "Credits for their store", imageString: "PATAGONIA-LOGO", forType: "brand"),
+    Coupon(name: "Trade-in values range from $10 to $100, payable as store credit.", company: "Patagonia", type: "Credits for their store", imageString: "PATAGONIA-LOGO", forType: "brand"),
     Coupon(name: "$5 reward credit for each clothing piece shipped", company: "Eileen Fisher", type: "Credits for their store", imageString: "EILEEN-FISHER-LOGO", forType: "brand"),
     Coupon(name: "20% off single product voucher", company: "Levi’s", type: "Voucher", imageString: "LEVI-LOGO", forType: "certainItem", clothingType: ["jean"]),
-    Coupon(name: "Rent out or sell bags and earn up to 80-88% of your selling price.", company: "Second Edit/Style Theory", type: "Money", imageString: "SECOND-EDIT-LOGO", forType: "certainItem", clothingType: ["bag"]),
+    Coupon(name: "Rent out or sell bags and earn up to 80-88% of your selling price.", company: "Second Edit", type: "Money", imageString: "SECOND-EDIT-LOGO", forType: "certainItem", clothingType: ["bag"]),
     Coupon(name: "Accept most items, either new or gently used in any size. ", company: "Uplift Project", type: "Donate", imageString: "NOT-LOADING", forType: "certainItem", clothingType: ["bra", "nursing pad"])
 ]
 
