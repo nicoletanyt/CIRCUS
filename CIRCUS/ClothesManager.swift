@@ -21,6 +21,12 @@ class ClothesManager: ObservableObject {
         load()
     }
     
+    @Published var filteredData = [Clothes]()
+    
+    func search(with query: String = "") {
+        filteredData = query.isEmpty ? clothess : clothess.filter { $0.name.contains(query)}
+    }
+    
     func getArchiveURL() -> URL {
         let plistName = "clothess.plist"
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

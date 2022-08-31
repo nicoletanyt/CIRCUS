@@ -14,8 +14,6 @@ import SwiftUI
 
 struct ClosetView: View {
     
-//    @State var clothes = [Clothes(name: "Hoodie", size: "L", imageString: , brand: "H&M"), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT"), brand: "NIL"), Clothes(name: "Dress", size: "L",brand: "NIL")]
-    
     @StateObject var clothesManager = ClothesManager()
     
     @State var isDetailSheetPresented = false
@@ -26,27 +24,11 @@ struct ClosetView: View {
     //Search Bar variables
     @State var searchText = ""
     
-    var filteredClothes: [Clothes] {
-        if searchText.isEmpty {
-            return clothesManager.clothess
-        } else {
-            return clothesManager.clothess.filter { $0.name.localizedStandardContains(searchText)}
-        }
-    }
-        
-//        if searchText.isEmpty {
-//            return clothesManager.clothess
-//        } else {
-//            return clothesManager.clothess.filter { $0.name.localizedStandardContains(searchText)}
-//        }
-//    }
-    
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    //$clothesManager.clothess
-                    ForEach($clothesManager.clothess) { $item in
+                    ForEach($clothesManager.filteredData) { $item in
                         NavigationLink {
                             DetailedClothesItemView(clothes: $item)
                         } label: {
@@ -62,6 +44,12 @@ struct ClosetView: View {
                 }
                 .navigationTitle("My Closet")
                 .searchable(text: $searchText )
+                .onChange(of: searchText, perform: { newQuery in
+                    clothesManager.search(with: newQuery)
+                })
+                .onAppear {
+                    clothesManager.search()
+                }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         EditButton()
@@ -103,7 +91,7 @@ struct clothesItemView: View {
         HStack {
             self.image?
                 .resizable()
-                //.aspectRatio(contentMode: .fit)
+            //.aspectRatio(contentMode: .fit)
                 .scaledToFit()
                 .mask(Circle().frame(width: 80, height: 80, alignment: .leading))
             VStack {
