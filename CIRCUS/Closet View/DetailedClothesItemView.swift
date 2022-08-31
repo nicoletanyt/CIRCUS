@@ -18,7 +18,7 @@ struct DetailedClothesItemView: View {
         NavigationView {
             Form {
                 Section {
-                    clothes.image?
+                    Image(clothes.imageString)
                         .resizable()
                         .frame(width: 150, height: 150, alignment: .center)
                 } header: {

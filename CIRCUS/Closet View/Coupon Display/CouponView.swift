@@ -23,11 +23,10 @@ struct CouponView: View {
     var body: some View {
         List {
             ForEach(couponsAvailable) { coupon in
-                NavigationLink {
-                    //web view to the link
-                } label: {
+                Link(destination: URL(string: coupon.link)!, label: {
                     CouponDisplayItem(coupon: coupon)
-                }
+                })
+                .foregroundColor(Color.black)
             }
         }
     }

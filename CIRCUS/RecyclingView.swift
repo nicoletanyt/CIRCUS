@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct RecyclingView: View {
+    @State var showWebView = false
+//    @Binding var urlString: String
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(allCoupon) { coupon in
-                    NavigationLink {
-                        //web view to the link
-                    } label: {
+                    Link(destination: URL(string: coupon.link)!, label: {
                         CouponDisplayItem(coupon: coupon)
-                    }
+                    })
+                    .foregroundColor(Color.black)
                 }
             }
             .navigationTitle("Benefits")

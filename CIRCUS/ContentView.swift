@@ -18,12 +18,7 @@ struct ContentView: View {
             RecyclingView()
                 .tabItem {
                     Image(systemName: "arrow.3.trianglepath")
-                    Text("Recycling")
-                }
-            ExchangeView()
-                .tabItem {
-                    Image(systemName: "arrow.right.square.fill")
-                    Text("Donate")
+                    Text("Benefits")
                 }
             ProfileView()
                 .tabItem{

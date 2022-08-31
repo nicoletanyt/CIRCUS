@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+extension UIImage {
+    func toPngString() -> String? {
+        let data = self.pngData()
+        return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
+  
+    func toJpegString(compressionQuality cq: CGFloat) -> String? {
+        let data = self.jpegData(compressionQuality: cq)
+        return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
+}
+
 struct NewClotheItemView: View {
     
     @Binding var clothes: [Clothes]
@@ -143,9 +155,9 @@ struct NewClotheItemView: View {
         //Save Item Button
         Button("Save Item") {
             if (imageButtonPressed == false) {
-                clothes.append(Clothes(name: clothesName, size: sizeSelection, image: nil, brand: brandName))
+                clothes.append(Clothes(name: clothesName, size: sizeSelection, imageString: "", brand: brandName))
             } else {
-                clothes.append(Clothes(name: clothesName, size: sizeSelection, image: Image(uiImage:self.image), brand: brandName))
+                clothes.append(Clothes(name: clothesName, size: sizeSelection, imageString: self.image.toPngString()!, brand: brandName))
             }
             presentationMode.wrappedValue.dismiss()
         }

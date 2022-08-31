@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
-
-extension Color {
-    static let lightBrown = Color(red: 208/255, green: 174/255, blue: 130/255)
-    static let navyGreen = Color(red: 177/255, green: 167/255, blue: 82/255)
-}
+//
+//extension Color {
+//    static let lightBrown = Color(red: 208/255, green: 174/255, blue: 130/255)
+//    static let navyGreen = Color(red: 177/255, green: 167/255, blue: 82/255)
+//}
 
 struct ClosetView: View {
     
-    @State var clothes = [Clothes(name: "Hoodie", size: "L", image: Image("HOODIE"), brand: "H&M"), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT"), brand: "NIL"), Clothes(name: "Dress", size: "L",brand: "NIL")]
+//    @State var clothes = [Clothes(name: "Hoodie", size: "L", imageString: , brand: "H&M"), Clothes(name: "Shirt", size: "XL", image: Image("SHIRT"), brand: "NIL"), Clothes(name: "Dress", size: "L",brand: "NIL")]
+    
+    @StateObject var clothesManager = ClothesManager()
     
     @State var isDetailSheetPresented = false
     
@@ -26,28 +28,36 @@ struct ClosetView: View {
     
     var filteredClothes: [Clothes] {
         if searchText.isEmpty {
-            return clothes
+            return clothesManager.clothess
         } else {
-            return clothes.filter { $0.name.localizedStandardContains(searchText)}
+            return clothesManager.clothess.filter { $0.name.localizedStandardContains(searchText)}
         }
     }
+        
+//        if searchText.isEmpty {
+//            return clothesManager.clothess
+//        } else {
+//            return clothesManager.clothess.filter { $0.name.localizedStandardContains(searchText)}
+//        }
+//    }
     
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach($clothes) { $item in
+                    //$clothesManager.clothess
+                    ForEach($clothesManager.clothess) { $item in
                         NavigationLink {
                             DetailedClothesItemView(clothes: $item)
                         } label: {
-                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.image == nil ? Image("NOT-LOADING"): item.image, brandText: item.brand)
+                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.imageString == "" ? Image("NOT-LOADING"): Image(item.imageString), brandText: item.brand)
                         }
                     }
                     .onDelete { indexSet in
-                        clothes.remove(atOffsets: indexSet)
+                        clothesManager.clothess.remove(atOffsets: indexSet)
                     }
                     .onMove { indices, newOffset in
-                        clothes.move(fromOffsets: indices, toOffset: newOffset)
+                        clothesManager.clothess.move(fromOffsets: indices, toOffset: newOffset)
                     }
                 }
                 .navigationTitle("My Closet")
@@ -65,7 +75,7 @@ struct ClosetView: View {
                     }
                 }
                 .sheet(isPresented: $isDetailSheetPresented) {
-                    NewClotheItemView(clothes: $clothes)
+                    NewClotheItemView(clothes: $clothesManager.clothess)
                 }
             }
             .background(
