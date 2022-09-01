@@ -32,7 +32,7 @@ struct ClosetView: View {
                         NavigationLink {
                             DetailedClothesItemView(clothes: $item)
                         } label: {
-                            clothesItemView(sizeText: item.size, nameText: item.name, image: item.imageString == "" ? Image("NOT-LOADING"): Image(item.imageString), brandText: item.brand)
+                            clothesItemView(sizeText: item.size, nameText: item.name, image: Image(item.imageString ?? "NOT-LOADING") , brandText: item.brand)
                         }
                     }
                     .onDelete { indexSet in
@@ -55,15 +55,12 @@ struct ClosetView: View {
                         EditButton()
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isDetailSheetPresented = true
+                        NavigationLink {
+                            NewClothesItemView()
                         } label: {
                             Image(systemName: "plus")
                         }
                     }
-                }
-                .sheet(isPresented: $isDetailSheetPresented) {
-                    NewClotheItemView(clothes: $clothesManager.clothess)
                 }
             }
             .background(

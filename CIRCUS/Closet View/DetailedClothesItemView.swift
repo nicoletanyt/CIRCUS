@@ -15,52 +15,49 @@ struct DetailedClothesItemView: View {
     let sizeOptions: [String] = ["XS", "S", "M", "L", "XL", "XXL"]
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    Image(clothes.imageString)
-                        .resizable()
-                        .frame(width: 150, height: 150, alignment: .center)
-                } header: {
-                    Text("Image")
-                }
-                Section {
-                    TextField("Edit clothing type", text: $clothes.name)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }header: {
-                    Text("Name")
-                }
-                Section {
-                    TextField("Edit Brand", text: $clothes.brand)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }header: {
-                    Text("Brand")
-                }
-
-                Section {
-                    HStack {
-                        Text("Current Size: ")
-                        Picker("Edit size", selection: $clothes.size) {
-                            ForEach(sizeOptions, id: \.self) { option in
-                                Text(option)
-                                    .tag(option)
-                            }
-                        }
-                        .pickerStyle(.menu)
-                    }
-                } header: {
-                    Text("Size")
-                }
-                Section {
-                    CouponView(clothes: $clothes)
-                } header: {
-                    Text("Coupons")
-                }
-                Spacer()
+        Form {
+            Section {
+                Image(clothes.imageString ?? "NOT-LOADING")
+                    .resizable()
+                    .frame(width: 150, height: 150, alignment: .center)
+            } header: {
+                Text("Image")
             }
+            Section {
+                TextField("Edit clothing type", text: $clothes.name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }header: {
+                Text("Name")
+            }
+            Section {
+                TextField("Edit Brand", text: $clothes.brand)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }header: {
+                Text("Brand")
+            }
+            
+            Section {
+                HStack {
+                    Text("Current Size: ")
+                    Picker("Edit size", selection: $clothes.size) {
+                        ForEach(sizeOptions, id: \.self) { option in
+                            Text(option)
+                                .tag(option)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+            } header: {
+                Text("Size")
+            }
+            Section {
+                CouponView(clothes: $clothes)
+            } header: {
+                Text("Coupons")
+            }
+            Spacer()
         }
         .navigationTitle("Edit Clothing Item")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

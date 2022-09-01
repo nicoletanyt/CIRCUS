@@ -15,6 +15,6 @@ struct Clothes: Identifiable, Codable {
     var name: String
     var size: String
 //    var image: Image
-    var imageString: String
+    var imageString: String?
     var brand: String
 }

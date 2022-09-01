@@ -21,7 +21,7 @@ struct RecyclingView: View {
                     .foregroundColor(Color.black)
                 }
             }
-            .navigationTitle("Benefits")
+            .navigationTitle("Recycling")
         }
         
     }
