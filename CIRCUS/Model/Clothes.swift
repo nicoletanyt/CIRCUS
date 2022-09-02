@@ -8,13 +8,10 @@
 import Foundation
 import SwiftUI
 
-//@propertyWrapper
-struct Clothes: Identifiable, Codable {
-    var id = UUID()
-    
+struct Clothes: Identifiable, Codable, Equatable {
+    var id = UUID().uuidString
     var name: String
     var size: String
-//    var image: Image
     var imageString: String?
     var brand: String
 }

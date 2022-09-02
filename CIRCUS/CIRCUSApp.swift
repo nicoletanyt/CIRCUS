@@ -12,7 +12,8 @@ struct CIRCUSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(ViewModel())
+                .environmentObject(ImageViewModel())
+                .environmentObject(ClothesManager())
                 .onAppear {
                     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable ")
                 }

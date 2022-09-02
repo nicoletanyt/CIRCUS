@@ -2,15 +2,15 @@
 //  DetailedClothesItemView.swift
 //  CIRCUS
 //
-//  Created by NICOLE TAN YITONG stu on 22/8/22.
+//  Created by NICOLE TAN YITONG stu on 2/9/22.
 //
 
 import SwiftUI
 
 struct DetailedClothesItemView: View {
     
-    @Binding var clothes: Clothes
-    
+    @State var clothes: Clothes
+        
     //Picker
     let sizeOptions: [String] = ["XS", "S", "M", "L", "XL", "XXL"]
     
@@ -60,7 +60,7 @@ struct DetailedClothesItemView: View {
         .navigationTitle("Edit Clothing Item")
     }
 }
-
+//
 //struct DetailedClothesItemView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailedClothesItemView()

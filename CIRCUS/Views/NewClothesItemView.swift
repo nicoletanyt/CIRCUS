@@ -8,38 +8,73 @@
 import SwiftUI
 
 struct NewClothesItemView: View {
+    //Images
+    @EnvironmentObject var vm: ImageViewModel
     
-    @ObservedObject var clothesManager = ClothesManager()
-    @State var clothesName = ""
-    @State var brandName = ""
-    @State var sizeSelection: String = "M"
-    @EnvironmentObject var vm: ViewModel
+    //Clothes
+    @EnvironmentObject var clothesManager: ClothesManager
+    @ObservedObject var clothesvm: ClothesItemModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack (alignment: .leading) {
-            ImagePickerViewDisplay()
-                .padding()
-            List {
-                LabelTextField(label: "Name", placeHolder: "Enter the name of the clothing item", textFieldInput: $clothesName)
-                LabelTextField(label: "Brand", placeHolder: "Enter the brand name", textFieldInput: $brandName)
-                PickerView(sizeSelection: sizeSelection)
-                SaveButton(clothes: $clothesManager.clothess, name: clothesName, size: sizeSelection, brand: brandName)
+        NavigationView {
+            VStack (alignment: .leading) {
+                ImagePickerViewDisplay()
+                    .padding()
+                List {
+                    LabelTextField(label: "Name", placeHolder: "Enter the name of the clothing item", textFieldInput: $clothesvm.name)
+                    LabelTextField(label: "Brand", placeHolder: "Enter the brand name", textFieldInput: $clothesvm.brand)
+                    PickerView(sizeSelection: clothesvm.size)
+                }
+                .sheet(isPresented: $vm.showPicker) {
+                    ImagePicker(sourceType: vm.source == .library ? .photoLibrary : .camera, selectedImage : $vm.image)
+                }
             }
-            
             .navigationTitle("Add Clothing Item")
-            .sheet(isPresented: $vm.showPicker) {
-                ImagePicker(sourceType: vm.source == .library ? .photoLibrary : .camera, selectedImage: $vm.image)
-            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: cancelButton, trailing: updateSaveButton)
         }
     }
 }
 
-struct NewClothesItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewClothesItemView()
-            .environmentObject(ViewModel())
+extension NewClothesItemView {
+    func updateClothes() {
+        let clothes = Clothes(id: clothesvm.id!, name: clothesvm.name, size: clothesvm.size, imageString: clothesvm.imageString, brand: clothesvm.brand)
+        clothesManager.updateClothes(clothes)
+        presentationMode.wrappedValue.dismiss()
+    }
+    func addClothes() {
+        let clothes = Clothes(name: clothesvm.name, size: clothesvm.size, imageString: clothesvm.imageString, brand: clothesvm.brand)
+        clothesManager.addClothes(clothes)
+        presentationMode.wrappedValue.dismiss()
+    }
+    
+    var updateSaveButton: some View {
+        Button {
+            addClothes()
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Text("Save")
+        }
+        .padding()
+        .disabled(clothesvm.isDisabled)
+    }
+    var cancelButton: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Text("Cancel")
+        }
     }
 }
+//
+//struct NewClothesItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewClothesItemView(clothesvm: ClothesItemModel())
+//            .environmentObject(ImageViewModel())
+//            .environmentObject(ClothesManager())
+//    }
+//}
 
 struct LabelTextField: View {
     
@@ -113,28 +148,8 @@ struct RoundedButton: View {
     }
 }
 
-struct SaveButton: View {
-    @Binding var clothes: [Clothes]
-    @EnvironmentObject var vm: ViewModel
-    @Environment(\.presentationMode) var presentationMode
-    
-    var name: String
-    var size: String
-    var brand: String
-    
-    var body: some View {
-        Button {
-            clothes.append(Clothes(name: name, size: size, brand: brand))
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            RoundedButton(icon: "square.and.arrow.down.fill", text: "Save", colour: Color.green)
-        }
-        .padding()
-    }
-}
-
 struct ImagePickerView: View {
-    @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject var vm: ImageViewModel
     
     var body: some View {
         VStack {

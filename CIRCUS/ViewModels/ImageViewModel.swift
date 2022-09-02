@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ViewModel: ObservableObject {
+class ImageViewModel: ObservableObject {
     @Published var image: UIImage?
     @Published var showPicker = false
     @Published var source: PickerImage.Source = .library
