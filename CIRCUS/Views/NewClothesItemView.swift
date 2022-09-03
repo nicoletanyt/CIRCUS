@@ -39,19 +39,23 @@ struct NewClothesItemView: View {
 
 extension NewClothesItemView {
     func updateClothes() {
-        let clothes = Clothes(id: clothesvm.id!, name: clothesvm.name, size: clothesvm.size, imageString: clothesvm.imageString, brand: clothesvm.brand)
+        let clothes = Clothes(id: clothesvm.id!, name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand)
         clothesManager.updateClothes(clothes)
         presentationMode.wrappedValue.dismiss()
     }
     func addClothes() {
-        let clothes = Clothes(name: clothesvm.name, size: clothesvm.size, imageString: clothesvm.imageString, brand: clothesvm.brand)
+        let clothes = Clothes(name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand)
         clothesManager.addClothes(clothes)
         presentationMode.wrappedValue.dismiss()
     }
     
     var updateSaveButton: some View {
         Button {
-            addClothes()
+            addClothes() //save the clothes to json
+            if vm.image !== nil {
+                vm.addMyImage(clothesvm.name, image: vm.image!) //save the image to json with its corresponding clothes name
+                vm.image = nil
+            } 
             presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Save")
@@ -70,7 +74,7 @@ extension NewClothesItemView {
 //
 //struct NewClothesItemView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        NewClothesItemView(clothesvm: ClothesItemModel())
+//        NewClothesItemView(clothesvm: ClothesDataStore())
 //            .environmentObject(ImageViewModel())
 //            .environmentObject(ClothesManager())
 //    }

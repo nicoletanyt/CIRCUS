@@ -19,9 +19,10 @@ class ClothesDataStore: ObservableObject {
         }
     }
     @Published var filteredClothes: [Clothes] = []
+    let fileName =  "Clothes.json"
     
     init() {
-        print(FileManager.docDirURL.path)
+//        print(FileManager.docDirURL.path)
         if FileManager().docExist(named: fileName){
             loadClothes()
         }
@@ -40,11 +41,11 @@ class ClothesDataStore: ObservableObject {
     
     func deleteClothes(at indexSet: IndexSet) {
         clothes.remove(atOffsets: indexSet)
+        ImageViewModel().deleteSelected(at: indexSet)
         saveClothes()
     }
     
     func loadClothes() {
-        print("loading clothes")
         FileManager().readDocument(docName: fileName) { (result) in
             switch result {
             case .success(let data):

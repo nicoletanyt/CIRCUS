@@ -11,7 +11,6 @@ class ClothesItemModel: ObservableObject {
     @Published var name = ""
     @Published var brand = ""
     @Published var size = "M"
-    @Published var imageString = "" 
     var id: String?
     
     var isDisabled: Bool {
@@ -24,7 +23,6 @@ class ClothesItemModel: ObservableObject {
         self.name = currentClothe.name
         self.brand = currentClothe.brand
         self.size = currentClothe.size
-        self.imageString = currentClothe.imageString ?? "NOT LOADING"
         
         id = currentClothe.id
         

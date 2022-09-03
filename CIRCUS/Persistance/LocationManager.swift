@@ -23,7 +23,7 @@ class LocationManager: ObservableObject {
     
     func getArchiveURL() -> URL {
         let plistName = "location.plist"
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsDirectory =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         return documentsDirectory.appendingPathComponent(plistName)
     }
@@ -67,7 +67,7 @@ class CurrentLocationManager: ObservableObject {
 
     func getArchiveURL() -> URL {
         let plistName = "currentLocations.plist"
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsDirectory =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
         return documentsDirectory.appendingPathComponent(plistName)
     }

@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailedClothesItemView: View {
     
     @State var clothes: Clothes
+    @EnvironmentObject var imagevm: ImageViewModel
         
     //Picker
     let sizeOptions: [String] = ["XS", "S", "M", "L", "XL", "XXL"]
@@ -17,9 +18,18 @@ struct DetailedClothesItemView: View {
     var body: some View {
         Form {
             Section {
-                Image(clothes.imageString ?? "NOT-LOADING")
-                    .resizable()
-                    .frame(width: 150, height: 150, alignment: .center)
+                if let keyOfImageIndex =  imagevm.clothesImages.firstIndex(where: {clothes.name == $0.name}) {
+                    Image(uiImage: imagevm.clothesImages[keyOfImageIndex].image)
+                        .resizable()
+                        .scaledToFit()
+                        .mask(Circle().frame(width: 80, height: 80, alignment: .leading))
+                } else {
+                    //if image doesn't exist
+                    Image("NOT-LOADING")
+                        .resizable()
+                        .scaledToFit()
+                        .mask(Circle().frame(width: 80, height: 80, alignment: .leading))
+                }
             } header: {
                 Text("Image")
             }

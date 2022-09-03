@@ -12,6 +12,5 @@ struct Clothes: Identifiable, Codable, Equatable {
     var id = UUID().uuidString
     var name: String
     var size: String
-    var imageString: String?
     var brand: String
 }

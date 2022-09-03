@@ -13,6 +13,7 @@ struct ClosetView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var clothesManager: ClothesDataStore
+    @EnvironmentObject var imagevm: ImageViewModel
     @State var isSheetShown: Bool = false
     
     var body: some View {
@@ -45,28 +46,44 @@ struct ClosetView: View {
                     .resizable())
         }
         .sheet(isPresented: $isSheetShown) {
-            NewClothesItemView(clothesvm: ClothesItemModel())
+            NewClothesItemView( clothesvm: ClothesItemModel())
         }
     }
 }
 
-//struct ClosetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ClosetView()
-//    }
-//}
+struct ClosetView_Previews: PreviewProvider {
+    static var previews: some View {
+        ClosetView()
+            .environmentObject(ClothesDataStore())
+            .environmentObject(ImageViewModel())
+    }
+}
 
 struct ClothingItemView: View {
-    @ObservedObject var clothesvm = ClothesItemModel()
-    @ObservedObject var vm = ImageViewModel()
+    @EnvironmentObject var clothesvm: ClothesItemModel
+    @EnvironmentObject var imagevm: ImageViewModel
     var item: Clothes
+    
+    var indexOfImage: Int? {
+        imagevm.clothesImages.firstIndex(where: {item.name == $0.name})
+    }
     
     var body: some View {
         HStack {
-            Image(uiImage: vm.image ?? UIImage(imageLiteralResourceName: "NOT-LOADING"))
-                .resizable()
-                .scaledToFit()
-                .mask(Circle().frame(width: 80, height: 80, alignment: .leading))
+            if let keyOfImageIndex =  imagevm.clothesImages.firstIndex(where: {item.name == $0.name}) {
+                Image(uiImage: imagevm.clothesImages[keyOfImageIndex].image)
+                    .resizable()
+                    .frame(width: 80, height: 80, alignment: .leading)
+                    .clipShape(Circle())
+                    .scaledToFit()
+            } else {
+                //if image doesn't exist
+                Image("NOT-LOADING")
+                    .resizable()
+                    .frame(width: 80, height: 80, alignment: .leading)
+                    .clipShape(Circle())
+                    .scaledToFit()
+            }
             VStack {
                 Text("Type: " + item.name)
                     .bold()
@@ -81,5 +98,8 @@ struct ClothingItemView: View {
             .padding()
         }
         .frame(height: 100)
+        .onAppear {
+            imagevm.loadclothesImagesJSONFile()
+        }
     }
 }
