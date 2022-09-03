@@ -16,7 +16,7 @@
 		A227579E28C0BE790017C0A4 /* NewClothesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A227579D28C0BE790017C0A4 /* NewClothesItemView.swift */; };
 		A248EEBB28B07334002FE57B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248EEBA28B07334002FE57B /* LocationManager.swift */; };
 		A2668D1228C0F62200B30274 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2668D1128C0F62200B30274 /* FileManager.swift */; };
-		A26745AF28BF4C0200BFE178 /* ClothesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26745AE28BF4C0200BFE178 /* ClothesManager.swift */; };
+		A26745AF28BF4C0200BFE178 /* ClothesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26745AE28BF4C0200BFE178 /* ClothesDataStore.swift */; };
 		A26F411428964E6C00A6EC06 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26F411328964E6C00A6EC06 /* ImagePicker.swift */; };
 		A27C0C7D28924E220075532A /* CIRCUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C7C28924E220075532A /* CIRCUSApp.swift */; };
 		A27C0C7F28924E220075532A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C7E28924E220075532A /* ContentView.swift */; };
@@ -45,7 +45,7 @@
 		A22CB8D8289A3F2D00058C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A248EEBA28B07334002FE57B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A2668D1128C0F62200B30274 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		A26745AE28BF4C0200BFE178 /* ClothesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesManager.swift; sourceTree = "<group>"; };
+		A26745AE28BF4C0200BFE178 /* ClothesDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesDataStore.swift; sourceTree = "<group>"; };
 		A26F411328964E6C00A6EC06 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A27C0C7928924E220075532A /* CIRCUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CIRCUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27C0C7C28924E220075532A /* CIRCUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIRCUSApp.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		A2A55A0A28C1B2B600C4F405 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A26745AE28BF4C0200BFE178 /* ClothesManager.swift */,
+				A26745AE28BF4C0200BFE178 /* ClothesDataStore.swift */,
 				A2A55A0628C1AA3F00C4F405 /* NewClothesItemModel.swift */,
 				A227579728C0B2FD0017C0A4 /* ImageViewModel.swift */,
 			);
@@ -267,7 +267,7 @@
 				A27C0C912892502F0075532A /* ClosetView.swift in Sources */,
 				A248EEBB28B07334002FE57B /* LocationManager.swift in Sources */,
 				A2EDDFE928A5D71C00E99540 /* Coupon.swift in Sources */,
-				A26745AF28BF4C0200BFE178 /* ClothesManager.swift in Sources */,
+				A26745AF28BF4C0200BFE178 /* ClothesDataStore.swift in Sources */,
 				A227579828C0B2FD0017C0A4 /* ImageViewModel.swift in Sources */,
 				A227579E28C0BE790017C0A4 /* NewClothesItemView.swift in Sources */,
 				A2234A0728AB180800664AE0 /* CouponView.swift in Sources */,

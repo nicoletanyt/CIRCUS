@@ -12,7 +12,7 @@ struct ClosetView: View {
     init() { UITableView.appearance().backgroundColor = UIColor.clear }
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var clothesManager: ClothesManager
+    @EnvironmentObject var clothesManager: ClothesDataStore
     @State var isSheetShown: Bool = false
     
     var body: some View {
@@ -63,7 +63,7 @@ struct ClothingItemView: View {
     
     var body: some View {
         HStack {
-            Image(clothesvm.imageString)
+            Image(uiImage: vm.image ?? UIImage(imageLiteralResourceName: "NOT-LOADING"))
                 .resizable()
                 .scaledToFit()
                 .mask(Circle().frame(width: 80, height: 80, alignment: .leading))

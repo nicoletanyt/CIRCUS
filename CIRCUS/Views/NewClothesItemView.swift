@@ -12,7 +12,7 @@ struct NewClothesItemView: View {
     @EnvironmentObject var vm: ImageViewModel
     
     //Clothes
-    @EnvironmentObject var clothesManager: ClothesManager
+    @EnvironmentObject var clothesManager: ClothesDataStore
     @ObservedObject var clothesvm: ClothesItemModel
     @Environment(\.presentationMode) var presentationMode
     

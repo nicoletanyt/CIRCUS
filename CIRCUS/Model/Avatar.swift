@@ -10,6 +10,5 @@ import Foundation
 struct Avatar: Identifiable {
     var id = UUID()
     var imageStr: String
-    var locked: Bool?
     var level: Int //level to attain this badge
 }

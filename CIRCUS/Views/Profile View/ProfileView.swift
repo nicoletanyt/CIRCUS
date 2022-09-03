@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @State var currentAvatar = "BADGE1"
+    @State var currentAvatar = "BADGE1" //To be done for persistence
     @ObservedObject var currentLocationManager = CurrentLocationManager()
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    NavigationLink(destination: EditImageView(currentAvatar: currentAvatar)) {
+                    NavigationLink(destination: EditImageView()) {
                         HStack {
-                            Image(currentAvatar) //current avatar
+                            Image(currentAvatar) //current avatar: Persistence 
                                 .resizable()
                                 .scaledToFit()
                                 .clipShape(Circle())
