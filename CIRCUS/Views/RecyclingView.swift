@@ -9,19 +9,24 @@ import SwiftUI
 
 struct RecyclingView: View {
     @State var showWebView = false
-//    @Binding var urlString: String
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(allCoupon) { coupon in
-                    Link(destination: URL(string: coupon.link)!, label: {
-                        CouponDisplayItem(coupon: coupon)
-                    })
-                    .foregroundColor(Color.black)
+            ZStack {
+                List {
+                    ForEach(allCoupon) { coupon in
+                        Link(destination: URL(string: coupon.link)!, label: {
+                            CouponDisplayItem(coupon: coupon)
+                        })
+                        .foregroundColor(Color.black)
+                    }
                 }
+                .navigationTitle("Recycling")
             }
-            .navigationTitle("Recycling")
+            .background(
+                Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
+                    .resizable())
         }
         
     }
