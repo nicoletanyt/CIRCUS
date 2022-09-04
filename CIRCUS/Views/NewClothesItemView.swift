@@ -20,7 +20,6 @@ struct NewClothesItemView: View {
         NavigationView {
             VStack (alignment: .leading) {
                 ImagePickerViewDisplay()
-                    .padding()
                 List {
                     LabelTextField(label: "Name", placeHolder: "Enter the name of the clothing item", textFieldInput: $clothesvm.name)
                     LabelTextField(label: "Brand", placeHolder: "Enter the brand name", textFieldInput: $clothesvm.brand)
@@ -74,9 +73,9 @@ extension NewClothesItemView {
 //
 //struct NewClothesItemView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        NewClothesItemView(clothesvm: ClothesDataStore())
+//        NewClothesItemView( clothesvm: ClothesItemModel())
 //            .environmentObject(ImageViewModel())
-//            .environmentObject(ClothesManager())
+////            .environmentObject(ClothesDataStore())
 //    }
 //}
 

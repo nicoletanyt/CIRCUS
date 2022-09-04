@@ -41,7 +41,6 @@ class ClothesDataStore: ObservableObject {
     
     func deleteClothes(at indexSet: IndexSet) {
         clothes.remove(atOffsets: indexSet)
-        ImageViewModel().deleteSelected(at: indexSet)
         saveClothes()
     }
     

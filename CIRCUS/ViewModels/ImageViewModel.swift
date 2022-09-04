@@ -36,10 +36,10 @@ class ImageViewModel: ObservableObject {
         image = nil //selected image in the image picker.
     }
     
-    func deleteSelected(at indexSet: IndexSet) {
+    func deleteImage(at indexSet: IndexSet) {
         clothesImages.remove(atOffsets: indexSet)
         saveclothesImagesJSONFile()
-//        reset()
+        reset()
     }
     
     func addMyImage(_ name: String, image: UIImage) {
