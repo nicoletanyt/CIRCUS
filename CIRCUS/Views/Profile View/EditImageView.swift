@@ -12,38 +12,31 @@ struct EditImageView: View {
     init() { UITableView.appearance().backgroundColor = UIColor.clear }
     @Environment(\.colorScheme) var colorScheme
     
-    let avatarRecycle = [
-        Avatar(imageStr: "SHRUB-0", level: 0),
-        Avatar(imageStr: "SHRUB-1", level: 1),
-        Avatar(imageStr: "SHRUB-2", level: 2)
+    @EnvironmentObject var uservm: UserDataStore
+
+    var allAvatars: [Avatar] = [
+        Avatar(imageStr: "SHRUB-0", level: 0, type: "Recycle"),
+        Avatar(imageStr: "SHRUB-1", level: 1, type: "Recycle"),
+        Avatar(imageStr: "SHRUB-2", level: 2, type: "Recycle"),
+        Avatar(imageStr: "FLOWERPOT-0", level: 0, type: "Donate"),
+        Avatar(imageStr: "FLOWERPOT-1", level: 1, type: "Donate"),
+        Avatar(imageStr: "FLOWERPOT-2", level: 2, type: "Donate")
     ]
-    let avatarDonate = [
-        Avatar(imageStr: "FLOWERPOT-0", level: 0),
-        Avatar(imageStr: "FLOWERPOT-1", level: 1),
-        Avatar(imageStr: "FLOWERPOT-2", level: 2)
-    ]
-    var allAvatars: [Avatar] {
-        return avatarRecycle + avatarDonate
-    }
     
-    @State var currentAvatar = ""
     let columns = [GridItem(.adaptive(minimum: 100))]
-    @State var levels = [1, 3] //Recycling, Donating. Supposed to be stored for data persisetence
     
     var filteredAvatars: [Avatar] {
-        return avatarRecycle.filter{ $0.level < levels[0]} + avatarDonate.filter{ $0.level < levels[1]}
+        allAvatars.filter( {$0.type == "Recycle" ? $0.level <= uservm.user.levels[0] :  $0.level <= uservm.user.levels[1]} )
     }
     
     var body: some View {
         ZStack {
-            Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
-                .resizable()
             VStack{
                 HStack {
                     Text("Current Avatar: ")
                         .font(.title)
                     Spacer()
-                    Image(currentAvatar)
+                    Image(uservm.user.currentAvatar)
                         .resizable()
                         .padding()
                         .frame(width: 125, height: 200)
@@ -57,19 +50,18 @@ struct EditImageView: View {
             .padding()
             .navigationTitle("Edit Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear(perform: uservm.loadUserInformation)
         }
-        .edgesIgnoringSafeArea(.top)
-//        .background(
-//
-//        )
+        .background(Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
+            .resizable())
     }
 }
 
-struct EditImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditImageView()
-    }
-}
+//struct EditImageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditImageView()
+//    }
+//}
 
 extension EditImageView {
     var displayAvatars: some View {
@@ -77,7 +69,8 @@ extension EditImageView {
             ForEach(allAvatars) { avatar in
                 Button {
                     if filteredAvatars.contains(where: {$0.imageStr == avatar.imageStr}) {
-                        currentAvatar = avatar.imageStr
+                        uservm.user.currentAvatar = avatar.imageStr
+                        uservm.saveUserInformation()
                     } else {
                         return
                     }
@@ -97,7 +90,6 @@ extension EditImageView {
                             .padding()
                     }
                 }
-//                .background(Color("LIGHT-BROWN"))
                 .background(Color.white)
                 .cornerRadius(20)
             }

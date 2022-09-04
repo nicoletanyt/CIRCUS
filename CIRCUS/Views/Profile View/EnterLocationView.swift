@@ -10,114 +10,99 @@ import SwiftUI
 struct EnterLocationView: View {
     //@Binding var currentLocation: String //for textfield binding
     @State var isShowSheet: Bool = false
-    @StateObject var locationManager = LocationManager()
-    @StateObject var currentLocationManager = CurrentLocationManager()
-    @State var isCheckedArray: String = ""
+    @Environment(\.colorScheme) var colorScheme
+    
+    @EnvironmentObject var uservm: UserDataStore
     
     var body: some View {
-        Form {
-            Section {
+        ZStack {
+            Form {
                 Text("Enter a convenient place for you to recycle or donate your clothes.")
-                    .font(.system(size: 20, weight: .regular, design: .serif))
-            }
-            Section {
-                Button {
-                    isShowSheet = true
-                } label: {
-                    HStack {
-                        Text(currentLocationManager.currentLocations.last == nil ? "NIL" : currentLocationManager.currentLocations.last!) //get the last element of the array, aka the most updated one
-                            .foregroundColor(Color.black)
-                        Spacer()
-                        Image(systemName: "checkmark")
-                            .foregroundColor(Color.blue)
-                            .frame(width: 24, height: 24, alignment: .trailing)
-                    }
+                    .font(.headline)
+                Section {
+                    Text(uservm.user.currentLocation)
+                        .foregroundColor(Color.black)
+                } header: {
+                    Text("Currently Set To")
                 }
-            } header: {
-                Text("CURRENTLY SET TO")
-            }
-            Section {
-                List {
-                    ForEach($locationManager.locations, id: \.self) { $location in
-                        Button {
-                            isCheckedArray = location
-                            currentLocationManager.currentLocations.append(location)
-                        } label: {
-                            HStack {
+                Section {
+                    List {
+                        ForEach(uservm.user.locations, id: \.self) { location in
+                            Button {
+                                uservm.user.currentLocation = location
+                                uservm.saveUserInformation()
+                            } label: {
                                 Text(location)
                                     .foregroundColor(Color.black)
-                                Spacer()
-                                Image(systemName: isCheckedArray == location ? "checkmark" : "")
-                                    .foregroundColor(Color.blue)
+                                    .padding(.vertical)
                             }
                         }
-                        .listRowBackground(isCheckedArray == location ? Color.gray .opacity(0.2) : Color.white)
+                        .onDelete { indexSet in
+                            uservm.user.locations.remove(atOffsets: indexSet)
+                            uservm.saveUserInformation()
+                        }
                     }
-                    .onDelete { indexSet in
-                        locationManager.locations.remove(atOffsets: indexSet )
-                    }
-                    .onMove { indices, newOffset in
-                        locationManager.locations.move(fromOffsets: indices, toOffset: newOffset)
+                } header: {
+                    Text("Past Locations")
+                }
+            }
+            .onAppear(perform: uservm.loadUserInformation)
+            .navigationTitle("Locations")
+            .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $isShowSheet) {
+                LocationTextField()
+            }
+            .toolbar {
+                ToolbarItem {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowSheet = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
-            } header: {
-                Text("PAST LOCATIONS SET")
-            }
-            Spacer()
-        }
-        .sheet(isPresented: $isShowSheet) {
-            LocationTextField(locations: $locationManager.locations) //or is this $currentLocation?
-        }
-        .toolbar {
-            ToolbarItem {
-                EditButton()
             }
         }
+        .background(Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")
+            .resizable())
     }
 }
 
 struct LocationTextField: View {
     
-    //@Binding var pastLocations: [Location]
-//    @ObservedObject var currentLocationManager = CurrentLocationManager() //for storing past locations ^
-//    @ObservedObject var locationManager = LocationManager()
-    
     @Environment(\.presentationMode) var presentationMode
     @State var location = "" //for the text field
-    @Binding var locations: [String]
+    @EnvironmentObject var uservm: UserDataStore
     
     var body: some View {
-        VStack {
-            ZStack {
-                HStack {
-                    Spacer()
-                    Text("Location")
-                        .bold()
-                    Spacer(minLength: 100)
+        NavigationView {
+            VStack {
+                TextField("Enter Your Location", text: $location)
+                    .padding()
+                Spacer()
+            }
+            .navigationTitle("New Location")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-//                        locationManager.locations.append(location) //input from text field
-//                        currentLocationManager.currentLocations.append(location)
-                        locations.append(location)
+                        uservm.user.locations.append(location)
+                        uservm.saveUserInformation()
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("Save")
-                            .foregroundColor(Color.blue)
-                            .bold()
                     }
-                    .padding()
+                    .disabled(location == "")
                 }
-                .frame(height: 80)
             }
-            .background(Color.gray .opacity(0.3))
-            TextField("Enter Your Location", text: $location)
-                .padding()
-            Spacer()
         }
     }
 }
-
-//struct EnterLocationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EnterLocationView()
-//    }
-//}
+struct EnterLocationView_Previews: PreviewProvider {
+    static var previews: some View {
+        EnterLocationView()
+            .environmentObject(UserDataStore())
+    }
+}

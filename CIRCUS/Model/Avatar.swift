@@ -11,4 +11,5 @@ struct Avatar: Identifiable {
     var id = UUID()
     var imageStr: String
     var level: Int //level to attain this badge
+    var type: String //Recycling or Donating 
 }
