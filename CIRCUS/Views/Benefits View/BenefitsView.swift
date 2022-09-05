@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecyclingView: View {
+struct BenefitsView: View {
     @State var showWebView = false
     @Environment(\.colorScheme) var colorScheme
     
@@ -22,7 +22,7 @@ struct RecyclingView: View {
                         .foregroundColor(Color.black)
                     }
                 }
-                .navigationTitle("Recycling")
+                .navigationTitle("Benefits")
             }
             .background(
                 Image(colorScheme == .light ? "APP-BACKGROUND-LIGHT" : "APP-BACKGROUND-DARK")

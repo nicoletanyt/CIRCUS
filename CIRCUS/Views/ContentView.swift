@@ -15,7 +15,7 @@ struct ContentView: View {
                     Image(systemName: "tshirt.fill")
                     Text("Closet")
                 }
-            RecyclingView()
+            BenefitsView()
                 .tabItem {
                     Image(systemName: "arrow.3.trianglepath")
                     Text("Benefits")
