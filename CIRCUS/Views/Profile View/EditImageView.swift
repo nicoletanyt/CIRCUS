@@ -22,11 +22,17 @@ struct EditImageView: View {
         Avatar(imageStr: "FLOWERPOT-1", level: 1, type: "Donate"),
         Avatar(imageStr: "FLOWERPOT-2", level: 2, type: "Donate")
     ]
+    var levelRecycled: Int {
+        uservm.user.itemsRecycled / 5
+    }
+    var levelDonated: Int {
+        uservm.user.itemsDonated / 5
+    }
     
     let columns = [GridItem(.adaptive(minimum: 100))]
     
     var filteredAvatars: [Avatar] {
-        allAvatars.filter( {$0.type == "Recycle" ? $0.level <= uservm.user.levels[0] :  $0.level <= uservm.user.levels[1]} )
+        allAvatars.filter( {$0.type == "Recycle" ? $0.level <= levelRecycled :  $0.level <= levelDonated} )
     }
     
     var body: some View {

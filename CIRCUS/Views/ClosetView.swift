@@ -22,7 +22,7 @@ struct ClosetView: View {
                 List() {
                     ForEach(clothesManager.clothes) { item in
                         NavigationLink {
-                            
+                            DetailedClothesItemView(clothes: item)
                         } label: {
                             ClothingItemView(item: item)
                         }

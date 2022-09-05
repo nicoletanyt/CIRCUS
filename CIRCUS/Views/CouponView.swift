@@ -10,15 +10,7 @@ import SwiftUI
 struct CouponView: View {
     
     @Binding var clothes: Clothes
-    
-    var couponsAvailable: [Coupon] {
-        forAllItems + forCertainBrands.filter( {clothes.brand.localizedStandardContains($0.company)} ) + forCertainItems.filter( {
-            $0.clothingType.contains(where: {
-                $0.range(of: clothes.name, options: .caseInsensitive) != nil
-            })
-        }
-        )
-    }
+    var couponsAvailable: [Coupon]
     
     var body: some View {
         List {
