@@ -9,16 +9,7 @@ import Foundation
 
 class ClothesDataStore: ObservableObject {
     @Published var clothes: [Clothes] = []
-    @Published var filteredText = "" {
-        didSet {
-            if !filteredText.isEmpty {
-                filteredClothes = clothes.filter {$0.name.localizedStandardContains(filteredText)}
-            } else {
-                filteredClothes = clothes
-            }
-        }
-    }
-    @Published var filteredClothes: [Clothes] = []
+    
     let fileName =  "Clothes.json"
     
     init() {
@@ -50,8 +41,7 @@ class ClothesDataStore: ObservableObject {
             case .success(let data):
                 let decoder = JSONDecoder()
                 do {
-                    clothes = try decoder.decode([Clothes].self, from: data)
-                    filteredClothes = clothes 
+                    clothes = try decoder.decode([Clothes].self, from: data) 
                 } catch {
                     print(error.localizedDescription)
                 }

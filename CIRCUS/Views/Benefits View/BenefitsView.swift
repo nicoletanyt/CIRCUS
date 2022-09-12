@@ -21,6 +21,9 @@ struct BenefitsView: View {
                         })
                         .foregroundColor(Color.black)
                     }
+                    Text("You may click on these logos to visit their website for more details.")
+                        .foregroundColor(Color.gray)
+                        .font(.system(.caption))
                 }
                 .navigationTitle("Benefits")
             }

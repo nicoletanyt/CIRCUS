@@ -60,7 +60,6 @@ extension NewClothesItemView {
             Text("Save")
         }
         .padding()
-        .disabled(clothesvm.isDisabled)
     }
     var cancelButton: some View {
         Button {

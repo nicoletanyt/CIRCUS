@@ -40,6 +40,12 @@ struct ProfileView: View {
                     } header: {
                         Text("LOCATION")
                     }
+                    Section {
+                        Text("You have donated \(uservm.user.itemsDonated) items.")
+                        Text("You have recycled \(uservm.user.itemsRecycled) items.")
+                    } header: {
+                        Text("CONTRIBUTIONS")
+                    }
                 }
                 .navigationTitle("Profile Page")
                 .onAppear(perform: uservm.loadUserInformation)

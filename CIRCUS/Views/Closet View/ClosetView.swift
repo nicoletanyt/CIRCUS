@@ -31,7 +31,7 @@ struct ClosetView: View {
                     .onDelete(perform: imagevm.deleteImage)
                 }
                 .navigationTitle("My Closet")
-                .searchable(text: $clothesManager.filteredText, prompt: Text("Filter Clothing Item"))
+//                .searchable(text: $clothesManager.filteredText, prompt: Text("Filter Clothing Item"))
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {

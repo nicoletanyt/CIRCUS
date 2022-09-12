@@ -78,6 +78,8 @@ struct DetailedClothesItemView: View {
                     CouponView(clothes: $clothes, couponsAvailable: couponsAvailable)
                 } header: {
                     Text("Coupons")
+                } footer: {
+                    Text("You may click on these logos to visit their website for more details.")
                 }
                 Section {
                     HStack {

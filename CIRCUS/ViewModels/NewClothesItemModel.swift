@@ -13,10 +13,6 @@ class ClothesItemModel: ObservableObject {
     @Published var size = "M"
     var id: String?
     
-    var isDisabled: Bool {
-        name.isEmpty //if it is empty, cannot create the item
-    }
-    
     init() {}
     
     init(_ currentClothe: Clothes) {
