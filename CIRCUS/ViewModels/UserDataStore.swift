@@ -8,7 +8,7 @@
 import Foundation
 
 class UserDataStore: ObservableObject {
-    @Published var user: User = User(locations: ["NIL"], itemsRecycled: 0, itemsDonated: 0, currentAvatar: "FLOWERPOT-0", currentLocation: "NIL")
+    @Published var user: User = User(itemsRecycled: 0, itemsDonated: 0, currentAvatar: "FLOWERPOT-0", currentLocation: "NIL")
     
     let fileName =  "User.json"
     

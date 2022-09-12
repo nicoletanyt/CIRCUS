@@ -33,13 +33,13 @@ struct ProfileView: View {
                     } header: {
                         Text("YOUR AVATARS")
                     }
-                    Section  {
-                        NavigationLink (destination: EnterLocationView()) {
-                            Text(uservm.user.currentLocation)
-                        }
-                    } header: {
-                        Text("LOCATION")
-                    }
+//                    Section  {
+//                        NavigationLink (destination: EnterLocationView()) {
+//                            Text(uservm.user.currentLocation)
+//                        }
+//                    } header: {
+//                        Text("LOCATION")
+//                    }
                     Section {
                         Text("You have donated \(uservm.user.itemsDonated) items.")
                         Text("You have recycled \(uservm.user.itemsRecycled) items.")
