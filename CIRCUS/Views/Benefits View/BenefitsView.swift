@@ -19,7 +19,7 @@ struct BenefitsView: View {
                         Link(destination: URL(string: coupon.link)!, label: {
                             CouponDisplayItem(coupon: coupon)
                         })
-                        .foregroundColor(Color.black)
+                        .foregroundColor(colorScheme == .light ? Color.black : Color.white)
                     }
                     Text("You may click on these logos to visit their website for more details.")
                         .foregroundColor(Color.gray)

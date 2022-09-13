@@ -83,6 +83,7 @@ struct LabelTextField: View {
     var label: String
     var placeHolder: String
     @Binding var textFieldInput: String
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -92,6 +93,7 @@ struct LabelTextField: View {
                 .padding(.all)
                 .background(Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0))
                 .cornerRadius(5.0)
+                .foregroundColor(Color.black)
             
         }
         .padding(.top)

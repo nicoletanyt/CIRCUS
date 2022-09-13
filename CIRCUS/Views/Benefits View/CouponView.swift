@@ -11,6 +11,7 @@ struct CouponView: View {
     
     @Binding var clothes: Clothes
     var couponsAvailable: [Coupon]
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         List {
@@ -18,7 +19,7 @@ struct CouponView: View {
                 Link(destination: URL(string: coupon.link)!, label: {
                     CouponDisplayItem(coupon: coupon)
                 })
-                .foregroundColor(Color.black)
+                .foregroundColor(colorScheme == .light ? Color.black: Color.white)
             }
         }
     }
