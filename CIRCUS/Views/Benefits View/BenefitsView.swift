@@ -10,12 +10,13 @@ import SwiftUI
 struct BenefitsView: View {
     @State var showWebView = false
     @Environment(\.colorScheme) var colorScheme
+    @State var searchText = ""
     
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(allCoupon) { coupon in
+                    ForEach(filteredCoupons) { coupon in
                         Link(destination: URL(string: coupon.link)!, label: {
                             CouponDisplayItem(coupon: coupon)
                         })
@@ -25,6 +26,7 @@ struct BenefitsView: View {
                         .foregroundColor(Color.gray)
                         .font(.system(.caption))
                 }
+                .searchable(text: $searchText, prompt: "Search for coupons")
                 .navigationTitle("Benefits")
             }
             .background(
@@ -33,10 +35,17 @@ struct BenefitsView: View {
         }
         
     }
+    var filteredCoupons: [Coupon] {
+        if searchText.isEmpty {
+            return allCoupon
+        } else {
+            return allCoupon.filter {$0.company.localizedCaseInsensitiveContains(searchText)}
+        }
+    }
 }
 
-//struct RecyclingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecyclingView()
-//    }
-//}
+struct RecyclingView_Previews: PreviewProvider {
+    static var previews: some View {
+        BenefitsView()
+    }
+}
