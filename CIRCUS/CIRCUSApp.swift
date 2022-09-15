@@ -14,6 +14,7 @@ struct CIRCUSApp: App {
             ContentView()
                 .environmentObject(ImageViewModel())
                 .environmentObject(ClothesDataStore())
+                .environmentObject(ClothesWornDataStore())
                 .environmentObject(UserDataStore())
                 .onAppear {
                     UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable ")

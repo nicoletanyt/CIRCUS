@@ -38,12 +38,12 @@ struct NewClothesItemView: View {
 
 extension NewClothesItemView {
     func updateClothes() {
-        let clothes = Clothes(id: clothesvm.id!, name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand)
+        let clothes = Clothes(id: clothesvm.id!, name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand, recentlyWorn: clothesvm.recentlyWorn)
         clothesManager.updateClothes(clothes)
         presentationMode.wrappedValue.dismiss()
     }
     func addClothes() {
-        let clothes = Clothes(name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand)
+        let clothes = Clothes(name: clothesvm.name, size: clothesvm.size, brand: clothesvm.brand, recentlyWorn: clothesvm.recentlyWorn)
         clothesManager.addClothes(clothes)
         presentationMode.wrappedValue.dismiss()
     }

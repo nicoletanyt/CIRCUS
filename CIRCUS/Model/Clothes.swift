@@ -13,4 +13,5 @@ struct Clothes: Identifiable, Codable, Equatable {
     var name: String
     var size: String
     var brand: String
+    var recentlyWorn: Date
 }

@@ -20,6 +20,11 @@ struct ContentView: View {
                     Image(systemName: "arrow.3.trianglepath")
                     Text("Benefits")
                 }
+            RecentlyWornView()
+                .tabItem {
+                    Image(systemName: "clock.fill")
+                    Text("Recently Worn")
+                }
             ProfileView()
                 .tabItem{
                     Image(systemName: "person.crop.circle")

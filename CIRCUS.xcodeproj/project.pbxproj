@@ -30,10 +30,13 @@
 		A27C0C8D289250040075532A /* BenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C8C289250040075532A /* BenefitsView.swift */; };
 		A27C0C912892502F0075532A /* ClosetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C902892502F0075532A /* ClosetView.swift */; };
 		A27C0C9328925B120075532A /* Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0C9228925B120075532A /* Clothes.swift */; };
+		A289CF3828D1B24600D6449F /* ClothesWornDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289CF3728D1B24600D6449F /* ClothesWornDataStore.swift */; };
 		A2A55A0728C1AA3F00C4F405 /* NewClothesItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A55A0628C1AA3F00C4F405 /* NewClothesItemModel.swift */; };
 		A2A55A1028C1C19700C4F405 /* DetailedClothesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A55A0F28C1C19700C4F405 /* DetailedClothesItemView.swift */; };
 		A2A8289828AF6401004B4D42 /* EnterLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A8289728AF6401004B4D42 /* EnterLocationView.swift */; };
 		A2B8276728C232B700E1B727 /* BADGES in Resources */ = {isa = PBXBuildFile; fileRef = A2B8276628C232B600E1B727 /* BADGES */; };
+		A2BD628128D18DAA00EFBDA5 /* RecentlyWornView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD628028D18DAA00EFBDA5 /* RecentlyWornView.swift */; };
+		A2BD628328D18F3900EFBDA5 /* AddNewRecentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD628228D18F3900EFBDA5 /* AddNewRecentView.swift */; };
 		A2DAA54D28ACAF2A0047948F /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DAA54C28ACAF2A0047948F /* Avatar.swift */; };
 		A2EDDFE928A5D71C00E99540 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EDDFE828A5D71C00E99540 /* Coupon.swift */; };
 /* End PBXBuildFile section */
@@ -64,10 +67,13 @@
 		A27C0C8C289250040075532A /* BenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsView.swift; sourceTree = "<group>"; };
 		A27C0C902892502F0075532A /* ClosetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetView.swift; sourceTree = "<group>"; };
 		A27C0C9228925B120075532A /* Clothes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothes.swift; sourceTree = "<group>"; };
+		A289CF3728D1B24600D6449F /* ClothesWornDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesWornDataStore.swift; sourceTree = "<group>"; };
 		A2A55A0628C1AA3F00C4F405 /* NewClothesItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClothesItemModel.swift; sourceTree = "<group>"; };
 		A2A55A0F28C1C19700C4F405 /* DetailedClothesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedClothesItemView.swift; sourceTree = "<group>"; };
 		A2A8289728AF6401004B4D42 /* EnterLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLocationView.swift; sourceTree = "<group>"; };
 		A2B8276628C232B600E1B727 /* BADGES */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BADGES; sourceTree = "<group>"; };
+		A2BD628028D18DAA00EFBDA5 /* RecentlyWornView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyWornView.swift; sourceTree = "<group>"; };
+		A2BD628228D18F3900EFBDA5 /* AddNewRecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRecentView.swift; sourceTree = "<group>"; };
 		A2DAA54C28ACAF2A0047948F /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		A2EDDFE828A5D71C00E99540 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +167,7 @@
 				A26745AE28BF4C0200BFE178 /* ClothesDataStore.swift */,
 				A2A55A0628C1AA3F00C4F405 /* NewClothesItemModel.swift */,
 				A227579728C0B2FD0017C0A4 /* ImageViewModel.swift */,
+				A289CF3728D1B24600D6449F /* ClothesWornDataStore.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				A27C0C7E28924E220075532A /* ContentView.swift */,
+				A2BD627F28D18D8900EFBDA5 /* Recently Worn View */,
 				A21329A228C628B400221556 /* Benefits View */,
 				A21329A128C628A200221556 /* Closet View */,
 				A2A55A0E28C1B38800C4F405 /* Profile View */,
@@ -206,6 +214,15 @@
 				A2A8289728AF6401004B4D42 /* EnterLocationView.swift */,
 			);
 			path = "Profile View";
+			sourceTree = "<group>";
+		};
+		A2BD627F28D18D8900EFBDA5 /* Recently Worn View */ = {
+			isa = PBXGroup;
+			children = (
+				A2BD628028D18DAA00EFBDA5 /* RecentlyWornView.swift */,
+				A2BD628228D18F3900EFBDA5 /* AddNewRecentView.swift */,
+			);
+			path = "Recently Worn View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,14 +309,17 @@
 				A2A55A1028C1C19700C4F405 /* DetailedClothesItemView.swift in Sources */,
 				A27C0C8D289250040075532A /* BenefitsView.swift in Sources */,
 				A2DAA54D28ACAF2A0047948F /* Avatar.swift in Sources */,
+				A289CF3828D1B24600D6449F /* ClothesWornDataStore.swift in Sources */,
 				A2A8289828AF6401004B4D42 /* EnterLocationView.swift in Sources */,
 				A26F411428964E6C00A6EC06 /* ImagePicker.swift in Sources */,
 				A227579C28C0BC830017C0A4 /* ZoomableScrollView.swift in Sources */,
+				A2BD628328D18F3900EFBDA5 /* AddNewRecentView.swift in Sources */,
 				A27C0C912892502F0075532A /* ClosetView.swift in Sources */,
 				A2EDDFE928A5D71C00E99540 /* Coupon.swift in Sources */,
 				A26745AF28BF4C0200BFE178 /* ClothesDataStore.swift in Sources */,
 				A227579828C0B2FD0017C0A4 /* ImageViewModel.swift in Sources */,
 				A227579E28C0BE790017C0A4 /* NewClothesItemView.swift in Sources */,
+				A2BD628128D18DAA00EFBDA5 /* RecentlyWornView.swift in Sources */,
 				A2234A0728AB180800664AE0 /* CouponView.swift in Sources */,
 				A23B546728C46DA000324BE7 /* UserDataStore.swift in Sources */,
 				A227579A28C0B5800017C0A4 /* PickerImage.swift in Sources */,

@@ -11,6 +11,7 @@ class ClothesItemModel: ObservableObject {
     @Published var name = ""
     @Published var brand = ""
     @Published var size = "M"
+    @Published var recentlyWorn = Date()
     var id: String?
     
     init() {}

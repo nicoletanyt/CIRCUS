@@ -1,40 +1,33 @@
 //
-//  ClosetView.swift
+//  RecentlyWornView.swift
 //  CIRCUS
 //
-//  Created by NICOLE TAN YITONG stu on 28/7/22.
+//  Created by NICOLE TAN YITONG stu on 14/9/22.
 //
 
 import SwiftUI
 
-struct ClosetView: View {
-    //Design
+struct RecentlyWornView: View {
     init() { UITableView.appearance().backgroundColor = UIColor.clear }
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var clothesManager: ClothesDataStore
+    @EnvironmentObject var clothesWornManager: ClothesWornDataStore
     @EnvironmentObject var imagevm: ImageViewModel
     @State var isSheetShown: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationView{
             ZStack {
                 List() {
-                    ForEach(clothesManager.clothes) { item in
-                        NavigationLink {
-                            DetailedClothesItemView(clothes: item)
-                        } label: {
-                            ClothingItemView(item: item)
-                        }
+                    ForEach(organisedClothes) { item in
+                        RecentClothingItemView(item: item)
                     }
-                    .onDelete(perform: clothesManager.deleteClothes)
-                    .onDelete(perform: imagevm.deleteImage)
                 }
-                .navigationTitle("My Closet")
+                .navigationTitle("Recently Worn")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            isSheetShown = true 
+                            isSheetShown = true
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -46,20 +39,15 @@ struct ClosetView: View {
                     .resizable())
         }
         .sheet(isPresented: $isSheetShown) {
-            NewClothesItemView( clothesvm: ClothesItemModel())
+            AddNewRecentView()
         }
     }
-}
-
-struct ClosetView_Previews: PreviewProvider {
-    static var previews: some View {
-        ClosetView()
-            .environmentObject(ClothesDataStore())
-            .environmentObject(ImageViewModel())
+    var organisedClothes: [Clothes] {
+        clothesWornManager.clothesWorn.sorted(by: {$0.recentlyWorn > $1.recentlyWorn})
     }
 }
 
-struct ClothingItemView: View {
+struct RecentClothingItemView: View {
     @EnvironmentObject var clothesvm: ClothesItemModel
     @EnvironmentObject var imagevm: ImageViewModel
     var item: Clothes
@@ -88,12 +76,8 @@ struct ClothingItemView: View {
                 Text("Type: " + item.name)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Size: " + item.size)
+                Text(getCurrentTime(clothing: item))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 15))
-                Text("Brand: " + item.brand)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 15))
             }
             .padding()
         }
@@ -102,4 +86,21 @@ struct ClothingItemView: View {
             imagevm.loadclothesImagesJSONFile()
         }
     }
+    
+    func getCurrentTime(clothing: Clothes) -> String {
+        let date = item.recentlyWorn
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        let month = calendar.component(.month, from: date)
+        let year = calendar.component(.year, from: date)
+        let dateDisplayed = "Date Worn: \(day)/\(month)/\(year)"
+        return dateDisplayed
+    }
 }
+
+struct RecentlyWornView_Previews: PreviewProvider {
+    static var previews: some View {
+        RecentlyWornView()
+    }
+}
+
